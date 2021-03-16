@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@200&display=swap');
+
+:root {
+  --bg-dark: #282c34;
+  --bg-light: #eeeeee;
+  --color-dark: #eeeeee;
+  --color-light: #282c34;
+  --color-alert: #e83e8c;
+  --color-alert-hover: #d62d7c;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-size:16px;
+  line-height: 1.6;
+  background-color: var(--bg-dark) !important;
+  color: var(--color-dark) !important;
+  font-family: 'Archivo', "Quicksand", sans-serif;
+  font-style: normal;
+   scroll-behavior: smooth; 
+  /* overflow-x: hidden;
+  overflow-y: auto; */
+}
+
+@media Screen and (max-width: 768px){
+  html {
+    font-size:12px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: var(--color-alert);
+  text-decoration: none;
+}                                                                            
+
+a:hover {
+  color: var(--color-alert-hover);
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* pre > code {
+  color: var(--color-alert);
+  text-decoration: none;
+} */
+
+/* SCROLLBAR */
+
+* {
+  scrollbar-color: var(--bg-dark);
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar-track
+{
+background-color: var(--bg-dark);
+}
+
+*::-webkit-scrollbar
+{
+width: 10px;
+background-color: var(--bg-dark);
+}
+
+*::-webkit-scrollbar-thumb
+{
+background-color:  var(--color-dark);
+}

@@ -23,6 +23,14 @@
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build"
   },
+  "dependencies": {
+    "buble": "^0.20.0",
+    "core-js": "^3.9.1",
+    "prism-react-renderer": "^1.2.0",
+    "prismjs": "^1.23.0",
+    "react-simple-code-editor": "^0.11.0",
+    "style-scoped": "^0.2.1"
+  },
   "peerDependencies": {
     "react": "^16.0.0"
   },

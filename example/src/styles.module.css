@@ -1,0 +1,33 @@
+.custom {
+  min-width: 300px;
+  font-size: 16px;
+  height: 400px;
+  margin: 10px;
+  border-radius: 14px;
+  background: #211;
+  box-shadow: inset 2px 2px 2px #e6ad95, inset -2px -2px 2px #ffc3a7;
+  position: relative;
+  overflow: auto !important;
+  font-family: "Fira code", "Fira Mono", monospace;
+  cursor: text;
+}
+
+.custom textarea:focus {
+  outline: none;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+
+/* DISABLE WHITE SQUARE AROUNF =, ! and < > CODE SYMBOLS */
+
+span[class*="operator"] {
+  background: none !important;
+}
