@@ -15,6 +15,7 @@ npm install --save react-code-live
 ```jsx
 
 import React from "react"
+import MyLib from "my-lib"
 
 const App = () => {
 return(
@@ -24,7 +25,7 @@ return(
       initialCode={initialCode}
       initialCss={initialCss}
       textAreaClassName={"textarea_class"}
-      scope={{myLib: lib }}
+      scope={{myLib: MyLib }}
     />
   </div>
 )};
