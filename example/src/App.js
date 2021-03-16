@@ -88,7 +88,8 @@ const data = [{
   scope: {
     styled: true
   }
-} ]
+},
+{} ]
 
 const App = () => {
 
