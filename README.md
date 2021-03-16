@@ -13,17 +13,53 @@ npm install --save react-code-live
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
-
-import MyComponent from 'react-code-live'
-import 'react-code-live/dist/index.css'
-
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
+const initialCss = `
+.__custom__live__react__ {
+width:150px;
+height:150px;
+background:tomato;
+color:#FFF;
+display:flex;
+border-radius: 50%;
+justify-content:center;
+align-items:center;
+padding:5px;
 }
+
+.__custom__live__react__ > h5 {
+text-align: center;
+}
+`;
+
+const initialCode = `function Test () {
+  return (
+    <div className="__custom__live__react__">
+      <h5>Functional Component
+    </div>
+    )
+}`;
+
+
+const App = () => {
+
+return(
+  <div>
+    <Editor
+      className={"container_class"}
+      initialCode={initialCode}
+      initialCss={initialCss}
+      textAreaClassName={"textarea_class"}
+      scope={{myLib: lib }}
+    />
+  </div>
+)};
+
+export default App;
 ```
+
+### *This is still a *WORK IN PROGRESS*.* 
+
+##### There is no testing environment setup yet, so if you wish to contribute, please open an issue. Thanks.
 
 ## License
 
