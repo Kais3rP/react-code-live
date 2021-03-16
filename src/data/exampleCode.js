@@ -1,45 +1,32 @@
-export const exampleCode = `
-function Test () { 
+export const exampleJs = `
+function Test() {
+  const [state, setState] = useState(1);
 
-  const [state, setState] = useState(1)
+  useEffect(() => {
+    console.log("CLICKED!");
+  }, [state]);
 
-  useEffect(()=>{  
-    console.log("INSIDE EFFECT")       
-  },[state])
+  const handler = () => setState(state => state * 2);
 
-  const handler = () => setState( state => state*2)
-  
   return (
-        <>
-          <MyBtn onClick={handler}>
-            STATE: {state}
-          </MyBtn> 
-          <MyBtn2 onClick={handler}>
-            STATE: {state}
-          </MyBtn2> 
-        </>
-        )
+    <div>
+      <button onClick={() => setState(state => state + 1)}>
+        CLICKS {state}
+      </button>
+    </div>
+  );
 }
-
-const MyBtn = styled.button\`
-            background-color: palegreen;
-            cursor: pointer;
-            &:active {
-              transform: scale(0.9);
-            }
-          \`
-
-const MyBtn2 = styled.button\`
-            background-color: paleblue;
-            cursor: pointer;
-            &:active {
-              transform: scale(0.9);
-            }
-          \`
 `;
 
 export const exampleCss = `button {
-    color: magenta;
-    width:100px;
-    height:50px;
+  background-color: tomato !important;
+  color: #312;
+  border-radius: 5px;
+  cursor:pointer;
+}
+button:hover {
+  transform: scale(1.05);
+}
+button:active {
+  transform: scale(0.95)
 }`;

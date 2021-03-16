@@ -1,14 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { generateElement } from "../render";
 import { calcNewCode } from "../utils"
+import { exampleJs } from "../../data/exampleCode"
 
 export default function useManageJs(initCode, scope = {}) {
   const [code, setCode] = useState(
     initCode && typeof initCode === "string"
       ? initCode
-      : `function Test(){
-        return "hello"
-      }`
+      : exampleJs
   );
   const [Preview, setPreview] = useState(null);
 
