@@ -4,7 +4,7 @@ import useManageJs from '../../shared/hooks/useManageJs'
 import useManageCss from '../../shared/hooks/useManageCss'
 import 'style-scoped'
 /* import styledJsx from "styled-jsx" */
-import { exampleCode } from '../../data/exampleCode'
+import { exampleJs, exampleCss } from '../../data/exampleCode'
 
 export default function FullEditor({
   initialCode,
@@ -57,6 +57,6 @@ export default function FullEditor({
 }
 
 FullEditor.defaultProps = {
-  initialCode: exampleCode,
-  initialCss: ``
+  initialCode: exampleJs,
+  initialCss: exampleCss
 }
