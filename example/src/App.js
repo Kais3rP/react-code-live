@@ -24,7 +24,7 @@ text-align: center;
 const functionExample = `function Test () {
   return (
     <div className="__custom__live__react__">
-      <h5>Functional Component
+      <h5>Functional Component</h5>
     </div>
     )
 }`;
