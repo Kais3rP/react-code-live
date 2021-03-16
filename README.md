@@ -68,4 +68,4 @@ export default App;
 
 ## License
 
-MIT © [Cesare Polonara](https://github.com/Cesare Polonara)
+MIT © [Cesare Polonara](https://github.com/Kais3rP)
