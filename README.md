@@ -13,6 +13,22 @@ npm install --save react-code-live
 ## Usage
 
 ```jsx
+
+import React from "react"
+
+const App = () => {
+return(
+  <div>
+    <Editor
+      className={"container_class"}
+      initialCode={initialCode}
+      initialCss={initialCss}
+      textAreaClassName={"textarea_class"}
+      scope={{myLib: lib }}
+    />
+  </div>
+)};
+
 const initialCss = `
 .__custom__live__react__ {
 width:150px;
@@ -34,25 +50,10 @@ text-align: center;
 const initialCode = `function Test () {
   return (
     <div className="__custom__live__react__">
-      <h5>Functional Component
+      <h5>Functional Component</h5>
     </div>
     )
 }`;
-
-
-const App = () => {
-
-return(
-  <div>
-    <Editor
-      className={"container_class"}
-      initialCode={initialCode}
-      initialCss={initialCss}
-      textAreaClassName={"textarea_class"}
-      scope={{myLib: lib }}
-    />
-  </div>
-)};
 
 export default App;
 ```
