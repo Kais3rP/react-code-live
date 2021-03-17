@@ -25,7 +25,6 @@
 }
 
 
-
 /* DISABLE WHITE SQUARE AROUNF =, ! and < > CODE SYMBOLS */
 
 span[class*="operator"] {

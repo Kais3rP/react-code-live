@@ -16,7 +16,7 @@ function Test() {
     </div>
   );
 }
-`;
+`
 
 export const exampleCss = `button {
   background-color: tomato !important;
@@ -29,4 +29,4 @@ button:hover {
 }
 button:active {
   transform: scale(0.95)
-}`;
+}`

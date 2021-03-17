@@ -94,14 +94,23 @@ const data = [{
 const App = () => {
 
 
+function getJsCode(js){
+console.log(js.substr(0,10))
+}
+
+function getCssCode(css){
+  console.log(css.substr(0,10))
+  }
 
 return(
   <div>
     { data.map( el =>  <Editor
       className={styles.container}
-      initialCode={el.js}
+      initialJs={el.js}
       initialCss={el.css}
       textAreaClassName={styles.custom}
+      getJsCode={getJsCode}
+      getCssCode={getCssCode}
       scope={{styled: el.scope?.styled && styled }}
     />)}
   </div>

@@ -25,7 +25,7 @@ return(
   <div>
     <Editor
       className={"container_class"}
-      initialCode={initialCode}
+      initialJs={initialJs}
       initialCss={initialCss}
       textAreaClassName={"textarea_class"}
       scope={{myLib: MyLib }}
@@ -51,7 +51,7 @@ text-align: center;
 }
 `;
 
-const initialCode = `function Test () {
+const initialJs = `function Test () {
   return (
     <div className="__custom__live__react__">
       <h5>Functional Component</h5>
@@ -61,6 +61,15 @@ const initialCode = `function Test () {
 
 export default App;
 ```
+## CUSTOM STYLE
+
+To style the layout, you can use the **className** prop, that will style the main container, the **textAreaClassname** prop that will style both the textareas with code (content will inherit).
+
+To access the containers of the 3 elements you can use the dataset attributes of **data-id** to select the containers:
+
+div[data-id="preview-container"]
+div[data-id="js-container"]
+div[data-id="css-container"]
 
 ### *This is still a *WORK IN PROGRESS*.* 
 
