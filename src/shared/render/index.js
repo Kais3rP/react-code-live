@@ -15,8 +15,7 @@ import {
   getClassAndConst
 } from '../utils'
 
-export const generateElement = ({ code = '', scope = {} }) => {
-  try {
+export const generateElement = ({ code = '', scope = {} }, errorCallback) => {
     // CHECK CODE REGEXPS
     const _isClass = isClass(code)
     const _hasRender = hasRender(code)
@@ -24,15 +23,7 @@ export const generateElement = ({ code = '', scope = {} }) => {
 
     const transformed = formatAndTranspile(code)
 
-    return withErrorBoundary(evaluate(transformed, scope), {
-      _isClass,
-      _hasHooks,
-      _hasRender
-    })
-  } catch (e) {
-    console.error(e.toString())
-    return () => <ErrorLogger error={e.toString()} />
-  }
+    return withErrorBoundary(evaluate(transformed, scope), errorCallback)
 }
 
 function formatAndTranspile(code) {

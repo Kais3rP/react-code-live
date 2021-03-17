@@ -72,24 +72,28 @@ padding:5px;
 `;
 
 const data = [{
+  id:1,
   js: functionExample,
   css: initialCss
 }, {
+  id:2,
   js: arrowFunctionExample,
   css: initialCss
 },
 {
+  id:3,
   js: classExample,
   css: initialCss
 },
 {
+  id:4,
   js: styledExample,
   css: initialCss,
   scope: {
     styled: true
   }
 },
-{} ]
+{id:5} ]
 
 const App = () => {
 
@@ -105,6 +109,7 @@ function getCssCode(css){
 return(
   <div>
     { data.map( el =>  <Editor
+      key={el.id}
       className={styles.container}
       initialJs={el.js}
       initialCss={el.css}
