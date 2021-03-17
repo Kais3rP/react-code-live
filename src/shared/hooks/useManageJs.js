@@ -8,6 +8,7 @@ export default function useManageJs(initialJs, scope = {}) {
     initialJs && typeof initialJs === 'string' ? initialJs : ``
   )
   const [Preview, setPreview] = useState(null)
+  const [error, setError] = useState(null)
 
   const [isTyping, setIsTyping] = useState(false)
 
@@ -27,10 +28,19 @@ export default function useManageJs(initialJs, scope = {}) {
     if (textRef.current) textRef.current.selectionEnd = cursorIdx
   }, [cursorIdx])
 
+  function errorCallback(e) {
+    setError(e.toString())
+  }
   // @@ - PARSER
   function parseAndRender(code) {
-    const ParsedSync = generateElement({ code, scope })
+    try {
+    const ParsedSync = generateElement({ code, scope }, errorCallback)
     setPreview(() => ParsedSync)
+    setError(null)
+    } catch(e){
+      errorCallback(e.toString())
+      setPreview(null)
+    }
   }
 
   // @@ - HANDLE KEY DOWN TO INTERCEPT CHARACTERS BEFORE ON CHANGE EVENT
@@ -73,6 +83,7 @@ export default function useManageJs(initialJs, scope = {}) {
     code,
     handleJsChange,
     handleJsKeyDown,
-    Preview
+    Preview,
+    error
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import Editor from '../editor/Editor'
+import ErrorLogger from '../error-logger/ErrorLogger'
 import useManageJs from '../../shared/hooks/useManageJs'
 import useManageCss from '../../shared/hooks/useManageCss'
 import 'style-scoped'
@@ -17,7 +18,7 @@ export default function FullEditor({
   children,
   ...props
 }) {
-  const { code, Preview, handleJsChange, handleJsKeyDown } = useManageJs(
+  const { code, Preview, handleJsChange, handleJsKeyDown, error } = useManageJs(
     initialJs,
     scope
   )
@@ -29,13 +30,12 @@ export default function FullEditor({
         {/* THE KEY ATTRIBUTE HAS TO BE DYNAMIC AND UNIQUE IN THIS CASE TO MAKE THE SCOPE ATTRIBUTE TO WORK PROPERLY */}
         {css}
       </style>
-      <div data-id='preview-container'>{Preview && <Preview />}</div>
+      <div data-id='preview-container' onError={(e)=>console.log("CAUGHT ERROR WITH EVENT LISTENER",e.toString())}>{Preview && <Preview />}</div>
       <div data-id='js-container'>
         <Editor
           language='js'
           code={code}
           placeholder='WRITE REACT CODE HERE'
-          onValueChange={getJsCode}
           onChange={(e) => {
             const value = e.target.value
             handleJsChange(e)
@@ -58,6 +58,7 @@ export default function FullEditor({
           className={textAreaClassName}
         />
       </div>
+      {error && <ErrorLogger error={error} />}
       {typeof children === 'function' && children(code, css)}
       {render && render(code, css)}
     </div>
