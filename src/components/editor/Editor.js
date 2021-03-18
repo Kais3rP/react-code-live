@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { highlight, languages } from 'prismjs/components/prism-core'
 import Editor from '../../lib/editor'
 import 'prismjs/components/prism-clike'
@@ -13,6 +14,7 @@ export default function _Editor({ code, language, ...props }) {
   } else if (language === 'css') {
     lang = languages.css
   } else lang = language.js
+  console.log(code,lang)
   return (
     <Editor
       value={code}
@@ -21,4 +23,13 @@ export default function _Editor({ code, language, ...props }) {
       {...props}
     />
   )
+}
+
+_Editor.propTypes = {
+  code: PropTypes.string,
+  language: PropTypes.string,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func,
+  onKeyDown: PropTypes.func,
+  className: PropTypes.string,
 }

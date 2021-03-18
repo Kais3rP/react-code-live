@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Editor from '../editor/Editor'
 import ErrorLogger from '../error-logger/ErrorLogger'
 import useManageJs from '../../shared/hooks/useManageJs'
@@ -49,7 +50,7 @@ export default function FullEditor({
           code={css}
           placeholder='WRITE CSS CODE HERE'
           onChange={(e) => {
-            const { value } = e.target.value
+            const { value } = e.target
             handleCssChange(value)
             if (getCssCode) getCssCode(value)
           }}
@@ -67,3 +68,14 @@ export default function FullEditor({
   initialJs: exampleJs,
   initialCss: exampleCss
 } */
+
+FullEditor.propTypes = {
+  initialJs: PropTypes.string,
+  initialCss: PropTypes.string,
+  scope: PropTypes.object,
+  textAreaClassName: PropTypes.string,
+  getJsCode: PropTypes.func,
+  getCssCode: PropTypes.func,
+  render: PropTypes.func,
+  children: PropTypes.node,
+}

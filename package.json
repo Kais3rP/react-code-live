@@ -1,6 +1,6 @@
 {
   "name": "react-code-live",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Live coding Component for React code!",
   "author": "Cesare Polonara",
   "license": "MIT",
@@ -30,6 +30,7 @@
     "core-js": "^3.9.1",
     "prism-react-renderer": "^1.2.0",
     "prismjs": "^1.23.0",
+    "prop-types": "^15.7.2",
     "react-simple-code-editor": "^0.11.0",
     "style-scoped": "^0.2.1"
   },

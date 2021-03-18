@@ -1,4 +1,55 @@
 import * as React from 'react'
+import PropTypes from 'prop-types'
+
+/* CONSTANTS */
+
+const styles = {
+  container: {
+    position: 'relative',
+    textAlign: 'left',
+    boxSizing: 'border-box',
+    padding: 0,
+    overflow: 'hidden',
+  },
+  textarea: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    height: '100%',
+    width: '100%',
+    resize: 'none',
+    color: 'inherit',
+    overflow: 'hidden',
+    MozOsxFontSmoothing: 'grayscale',
+    WebkitFontSmoothing: 'antialiased',
+    WebkitTextFillColor: 'transparent',
+  },
+  highlight: {
+    position: 'relative',
+    pointerEvents: 'none',
+  },
+  editor: {
+    margin: 0,
+    border: 0,
+    background: 'none',
+    boxSizing: 'inherit',
+    display: 'inherit',
+    fontFamily: 'inherit',
+    fontSize: 'inherit',
+    fontStyle: 'inherit',
+    fontVariantLigatures: 'inherit',
+    fontWeight: 'inherit',
+    letterSpacing: 'inherit',
+    lineHeight: 'inherit',
+    tabSize: 'inherit',
+    textIndent: 'inherit',
+    textRendering: 'inherit',
+    textTransform: 'inherit',
+    whiteSpace: 'pre-wrap',
+    wordBreak: 'keep-all',
+    overflowWrap: 'break-word',
+  },
+}
 
 const KEYCODE_ENTER = 13
 const KEYCODE_TAB = 9
@@ -49,19 +100,32 @@ const cssText = /* CSS */ `
 `
 
 export default class Editor extends React.Component {
-  static defaultProps = {
-    tabSize: 2,
-    insertSpaces: true,
-    ignoreTabKey: false,
-    padding: 0
-  }
+  constructor(props) {
+    super(props)
+    this.state = {
+      capture: true,
+    }
 
-  state = {
-    capture: true
+    this._history = {
+      stack: [],
+      offset: -1,
+    }
+
+    this._input = null
   }
 
   componentDidMount() {
     this._recordCurrentState()
+  }
+
+  get session() {
+    return {
+      history: this._history,
+    }
+  }
+
+  set session(session) {
+    this._history = session.history
   }
 
   _recordCurrentState = () => {
@@ -75,12 +139,11 @@ export default class Editor extends React.Component {
     this._recordChange({
       value,
       selectionStart,
-      selectionEnd
+      selectionEnd,
     })
   }
 
-  _getLines = (text, position) =>
-    text.substring(0, position).split('\n')
+  _getLines = (text, position) => text.substring(0, position).split('\n')
 
   _recordChange = (record, overwrite = false) => {
     const { stack, offset } = this._history
@@ -133,7 +196,7 @@ export default class Editor extends React.Component {
 
     // Add the new operation to the stack
     this._history.stack.push({ ...record, timestamp })
-    this._history.offset++
+    this._history.offset += 1
   }
 
   _updateInput = (record) => {
@@ -156,7 +219,7 @@ export default class Editor extends React.Component {
       this._history.stack[this._history.offset] = {
         ...last,
         selectionStart: input.selectionStart,
-        selectionEnd: input.selectionEnd
+        selectionEnd: input.selectionEnd,
       }
     }
 
@@ -169,7 +232,7 @@ export default class Editor extends React.Component {
     const { stack, offset } = this._history
 
     // Get the previous edit
-    const record = {...stack[offset - 1],event:e}
+    const record = { ...stack[offset - 1], event: e }
 
     if (record) {
       // Apply the changes and update the offset
@@ -182,7 +245,7 @@ export default class Editor extends React.Component {
     const { stack, offset } = this._history
 
     // Get the next edit
-    const record = {...stack[offset + 1],event:e}
+    const record = { ...stack[offset + 1], event: e }
 
     if (record) {
       // Apply the changes and update the offset
@@ -209,8 +272,9 @@ export default class Editor extends React.Component {
     const { value, selectionStart, selectionEnd } = e.target
 
     const tabCharacter = (insertSpaces ? ' ' : '\t').repeat(tabSize)
+    const { capture } = this.state
 
-    if (e.keyCode === KEYCODE_TAB && !ignoreTabKey && this.state.capture) {
+    if (e.keyCode === KEYCODE_TAB && !ignoreTabKey && capture) {
       // Prevent focus change
       e.preventDefault()
 
@@ -246,7 +310,7 @@ export default class Editor extends React.Component {
               : selectionStart,
             // Move the end cursor by total number of characters removed
             selectionEnd: selectionEnd - (value.length - nextValue.length),
-            event: e
+            event: e,
           })
         }
       } else if (selectionStart !== selectionEnd) {
@@ -263,7 +327,6 @@ export default class Editor extends React.Component {
               if (i >= startLine && i <= endLine) {
                 return tabCharacter + line
               }
-
               return line
             })
             .join('\n'),
@@ -275,7 +338,7 @@ export default class Editor extends React.Component {
           // Move the end cursor by total number of characters added
           selectionEnd:
             selectionEnd + tabCharacter.length * (endLine - startLine + 1),
-          event: e
+          event: e,
         })
       } else {
         const updatedSelection = selectionStart + tabCharacter.length
@@ -289,7 +352,7 @@ export default class Editor extends React.Component {
           // Update caret position
           selectionStart: updatedSelection,
           selectionEnd: updatedSelection,
-          event: e
+          event: e,
         })
       }
     } else if (e.keyCode === KEYCODE_BACKSPACE) {
@@ -310,7 +373,7 @@ export default class Editor extends React.Component {
           // Update caret position
           selectionStart: updatedSelection,
           selectionEnd: updatedSelection,
-          event: e
+          event: e,
         })
       }
     } else if (e.keyCode === KEYCODE_ENTER) {
@@ -324,7 +387,7 @@ export default class Editor extends React.Component {
           e.preventDefault()
 
           // Preserve indentation on inserting a new line
-          const indent = '\n' + matches[0]
+          const indent = `\n${matches[0]}`
           const updatedSelection = selectionStart + indent.length
 
           this._applyEdits({
@@ -336,7 +399,7 @@ export default class Editor extends React.Component {
             // Update caret position
             selectionStart: updatedSelection,
             selectionEnd: updatedSelection,
-            event: e
+            event: e,
           })
         }
       }
@@ -380,7 +443,7 @@ export default class Editor extends React.Component {
           // Update caret position
           selectionStart,
           selectionEnd: selectionEnd + 2,
-          event:e
+          event: e,
         })
       }
     } else if (
@@ -418,41 +481,24 @@ export default class Editor extends React.Component {
 
       // Toggle capturing tab key so users can focus away
       this.setState((state) => ({
-        capture: !state.capture
+        capture: !state.capture,
       }))
     }
   }
 
   _handleChange = (e) => {
     const { value, selectionStart, selectionEnd } = e.target
+    const { onChange } = this.props
 
     this._recordChange(
       {
         value,
         selectionStart,
-        selectionEnd
+        selectionEnd,
       },
       true
     )
-
-    this.props.onChange(e)
-  }
-
-  _history = {
-    stack: [],
-    offset: -1
-  }
-
-  _input
-
-  get session() {
-    return {
-      history: this._history
-    }
-  }
-
-  set session(session) {
-    this._history = session.history
+    onChange(e)
   }
 
   render() {
@@ -491,7 +537,7 @@ export default class Editor extends React.Component {
       paddingTop: padding,
       paddingRight: padding,
       paddingBottom: padding,
-      paddingLeft: padding
+      paddingLeft: padding,
     }
 
     const highlighted = highlight(value)
@@ -503,15 +549,15 @@ export default class Editor extends React.Component {
           style={{
             ...styles.editor,
             ...styles.textarea,
-            ...contentStyle
+            ...contentStyle,
           }}
           className={
             className + (textareaClassName ? ` ${textareaClassName}` : '')
           }
           id={textareaId}
           value={value}
-          onChange={this._handleChange}
-          onKeyDown={this._handleKeyDown}
+          onChange={this._handleChange.bind(this)}
+          onKeyDown={this._handleKeyDown.bind(this)}
           onClick={onClick}
           onKeyUp={onKeyUp}
           onFocus={onFocus}
@@ -524,7 +570,6 @@ export default class Editor extends React.Component {
           placeholder={placeholder}
           readOnly={readOnly}
           required={required}
-          autoFocus={autoFocus}
           autoCapitalize='off'
           autoComplete='off'
           autoCorrect='off'
@@ -536,7 +581,7 @@ export default class Editor extends React.Component {
           aria-hidden='true'
           style={{ ...styles.editor, ...styles.highlight, ...contentStyle }}
           {...(typeof highlighted === 'string'
-            ? { dangerouslySetInnerHTML: { __html: highlighted + '<br />' } }
+            ? { dangerouslySetInnerHTML: { __html: `${highlighted}<br />` } }
             : { children: highlighted })}
         />
         {/* eslint-disable-next-line react/no-danger */}
@@ -546,50 +591,39 @@ export default class Editor extends React.Component {
   }
 }
 
-const styles = {
-  container: {
-    position: 'relative',
-    textAlign: 'left',
-    boxSizing: 'border-box',
-    padding: 0,
-    overflow: 'hidden'
-  },
-  textarea: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    height: '100%',
-    width: '100%',
-    resize: 'none',
-    color: 'inherit',
-    overflow: 'hidden',
-    MozOsxFontSmoothing: 'grayscale',
-    WebkitFontSmoothing: 'antialiased',
-    WebkitTextFillColor: 'transparent'
-  },
-  highlight: {
-    position: 'relative',
-    pointerEvents: 'none'
-  },
-  editor: {
-    margin: 0,
-    border: 0,
-    background: 'none',
-    boxSizing: 'inherit',
-    display: 'inherit',
-    fontFamily: 'inherit',
-    fontSize: 'inherit',
-    fontStyle: 'inherit',
-    fontVariantLigatures: 'inherit',
-    fontWeight: 'inherit',
-    letterSpacing: 'inherit',
-    lineHeight: 'inherit',
-    tabSize: 'inherit',
-    textIndent: 'inherit',
-    textRendering: 'inherit',
-    textTransform: 'inherit',
-    whiteSpace: 'pre-wrap',
-    wordBreak: 'keep-all',
-    overflowWrap: 'break-word'
-  }
+Editor.defaultProps = {
+  tabSize: 2,
+  insertSpaces: true,
+  ignoreTabKey: false,
+  padding: 0,
+}
+
+Editor.propTypes = {
+  value: PropTypes.string,
+  style: PropTypes.object,
+  padding: PropTypes.number,
+  highlight: PropTypes.string,
+  textareaId: PropTypes.string,
+  textareaClassName: PropTypes.string,
+  autoFocus: PropTypes.bool,
+  disabled: PropTypes.bool,
+  /* form,
+  maxLength,
+  minLength,
+  name,
+  placeholder,
+  readOnly,
+  required,
+  onClick,
+  onFocus,
+  onBlur,
+  onKeyUp,
+  onChange,
+  /* eslint-disable no-unused-vars */
+  /*onKeyDown,
+  tabSize,
+  insertSpaces,
+  ignoreTabKey,
+  /* eslint-enable no-unused-vars */
+  /*preClassName, */
 }
