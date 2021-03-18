@@ -28,7 +28,6 @@ function formatAndTranspile(code) {
     getArrowFunction(_code) ||
     getArrowFunctionAndConst(_code)
   const variables = _code.replace(reactFunction, '')
-console.log("FUNCTION", reactFunction)
   _code = `const {useState, useEffect, useRef, useMemo, useCallback, Component } = React;
   ${variables}
   return (${reactFunction})`

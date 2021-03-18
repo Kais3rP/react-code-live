@@ -14,7 +14,6 @@ const withErrorBoundary = (MyComponent, errorCallback) =>
     }
 
     render() {
-      console.log(this.check, MyComponent)
       return this.check && typeof MyComponent === 'function' ? (
         <MyComponent />
       ) : (

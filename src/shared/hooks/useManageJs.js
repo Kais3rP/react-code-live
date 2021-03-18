@@ -53,29 +53,29 @@ export default function useManageJs(initialJs, scope = {}) {
   function handleJsChange(e) {
     // HANDLE TEXT WRITTEN IN THE TEXTAREA
     textRef.current = e.target
-    const code = e.target.value
+    const _code = e.target.value
     // HANDLE PARSING CODE DEBOUNCE
     window.clearTimeout(debounceTimeoutRef.current)
     setIsTyping(true)
     debounceTimeoutRef.current = setTimeout(() => {
       setIsTyping(false)
     }, 1000)
-
+    setCode(_code)
     // HANDLE REPETITION OF BRACKETS
     const idx = e.target.selectionStart
     setCursorIdx(idx)
     switch (currentChar) {
       case '{':
-        setCode(calcNewCode(code, '}', idx))
+        setCode(calcNewCode(_code, '}', idx))
         break
       case '(':
-        setCode(calcNewCode(code, ')', idx))
+        setCode(calcNewCode(_code, ')', idx))
         break
       case '[':
-        setCode(calcNewCode(code, ']', idx))
+        setCode(calcNewCode(_code, ']', idx))
         break
       default:
-        setCode(code)
+        setCode(_code)
     }
   }
 

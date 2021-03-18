@@ -1,35 +1,37 @@
-import React from "react";
-import Editor from 'react-code-live';
-import styled from "styled-components";
-import styles from "./styles.module.css";
+import React from 'react'
+import Editor from 'react-code-live'
+import Header from './Header'
+import styled from 'styled-components'
+import styles from './styles.module.css'
 
 const App = () => {
-
-
-function getJsCode(js){
-  console.log(js.substr(0,10))
-}
-
-function getCssCode(css){
-  console.log(css.substr(0,10))
+  
+  /*   function getJsCode(js) {
+    console.log("JS LOG",js.substr(0, 10))
   }
 
-return(
-  <div>
-    { data.map( el =>  <Editor
-      key={el.id}
-      className={styles.container}
-      initialJs={el.js}
-      initialCss={el.css}
-      textAreaClassName={styles.custom}
-      getJsCode={getJsCode}
-      getCssCode={getCssCode}
-      scope={{styled: el.scope?.styled && styled }}
-    />)}
-  </div>
-)};
+  function getCssCode(css) {
+    console.log("CSS LOG",css.substr(0, 10))
+  } */
 
-export default App;
+  return (
+    <div>
+      <Header />
+      {data.map((el) => (
+        <Editor
+          key={el.id}
+          className={styles.container}
+          initialJs={el.js}
+          initialCss={el.css}
+          textAreaClassName={styles.custom}
+          scope={{ styled: el.scope?.styled && styled }}
+        />
+      ))}
+    </div>
+  )
+}
+
+export default App
 
 const initialCss = `
 .__custom__live__react__ {
@@ -47,7 +49,25 @@ padding:5px;
 .__custom__live__react__ > h5 {
 text-align: center;
 }
-`;
+`
+
+const initialCss2 = `
+.__custom__live__react__ {
+width:150px;
+height:150px;
+background:lightgreen;
+color:#FFF;
+display:flex;
+border-radius: 50%;
+justify-content:center;
+align-items:center;
+padding:5px;
+}
+
+.__custom__live__react__ > h5 {
+text-align: center;
+}
+`
 
 const functionExample = `function Test () {
   return (
@@ -55,7 +75,7 @@ const functionExample = `function Test () {
       <h5>Functional Component</h5>
     </div>
     )
-}`;
+}`
 
 const arrowFunctionExample = `const Test = () => {
   return (
@@ -63,7 +83,7 @@ const arrowFunctionExample = `const Test = () => {
       <h5>Arrow Function Component!</h5>
     </div>
     )
-}`;
+}`
 
 const classExample = `class Test extends Component {
   render(){
@@ -73,7 +93,7 @@ const classExample = `class Test extends Component {
       </div>
       )
   }
-}`;
+}`
 
 const styledExample = `const WithStyled = () => {
 return (
@@ -97,32 +117,34 @@ padding:5px;
   text-align: center;
 }
 \`
-`;
+`
 
-const data = [{
-  id:1,
-  js: functionExample,
-  css: initialCss
-}, {
-  id:2,
-  js: arrowFunctionExample,
-  css: initialCss
-},
-{
-  id:3,
-  js: classExample,
-  css: initialCss
-},
-{
-  id:4,
-  js: styledExample,
-  css: initialCss,
-  scope: {
-    styled: true
-  }
-},
-{id:5} ]
-
+const data = [
+  {
+    id: 1,
+    js: functionExample,
+    css: initialCss
+  },
+  {
+    id: 2,
+    js: arrowFunctionExample,
+    css: initialCss2
+  },
+  {
+    id: 3,
+    js: classExample,
+    css: initialCss
+  },
+  {
+    id: 4,
+    js: styledExample,
+    css: initialCss,
+    scope: {
+      styled: true
+    }
+  },
+  { id: 5 }
+]
 
 //EDITOR PROPS WHEN YOU NEED TO INTERACT WITH DATA IN YOUR PARENT, IT ACCEPTS:
 // - GETTERS

@@ -1,6 +1,6 @@
 {
   "name": "react-code-live",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Live coding Component for React code!",
   "author": "Cesare Polonara",
   "license": "MIT",
@@ -39,7 +39,7 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.2",
-    "eslint": "^7.8.1",
+    "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-standard": "^14.1.0",
