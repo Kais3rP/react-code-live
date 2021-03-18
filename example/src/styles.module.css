@@ -1,13 +1,14 @@
 .custom {
+  background: rgb(30, 20, 30);
+  height: 21.875rem;
+  max-height: 21.875rem;
+  overflow: auto;
   min-width: 300px;
-  font-size: 16px;
-  height: 400px;
+  overflow: auto;
   margin: 10px;
-  border-radius: 14px;
-  background: #211;
+  border-radius: 5px;
   box-shadow: inset 2px 2px 2px #e6ad95, inset -2px -2px 2px #ffc3a7;
   position: relative;
-  overflow: auto !important;
   font-family: "Fira code", "Fira Mono", monospace;
   cursor: text;
 }
@@ -30,3 +31,10 @@
 span[class*="operator"] {
   background: none !important;
 }
+
+/* HEADER STYLES */
+
+.logo {
+
+}
+
