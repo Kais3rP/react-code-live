@@ -1,4 +1,12 @@
-.custom {
+.container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+div[data-id="js-container"] {
   background: rgb(30, 20, 30);
   height: 21.875rem;
   max-height: 21.875rem;
@@ -13,24 +21,31 @@
   cursor: text;
 }
 
-.custom textarea:focus {
-  outline: none;
+div[data-id="css-container"] {
+  background: rgb(30, 20, 30);
+  height: 21.875rem;
+  max-height: 21.875rem;
+  overflow: auto;
+  min-width: 300px;
+  overflow: auto;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: inset 2px 2px 2px #e6ad95, inset -2px -2px 2px #ffc3a7;
+  position: relative;
+  font-family: "Fira code", "Fira Mono", monospace;
+  cursor: text;
 }
 
-.container {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
-}
-
-
-/* DISABLE WHITE SQUARE AROUNF =, ! and < > CODE SYMBOLS */
+/* DISABLE WHITE SQUARE AROUND =, ! and < > CODE SYMBOLS */
 
 span[class*="operator"] {
   background: none !important;
 }
+
+textarea:focus {
+  outline: none;
+}
+
 
 /* HEADER STYLES */
 

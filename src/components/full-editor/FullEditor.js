@@ -10,7 +10,6 @@ export default function FullEditor({
   initialJs,
   initialCss,
   scope,
-  textAreaClassName,
   getJsCode,
   getCssCode,
   render,
@@ -24,7 +23,7 @@ export default function FullEditor({
   const { css, handleCssChange } = useManageCss(initialCss)
 
   return (
-    <div {...props} style={{ position: 'relative' }}>
+    <div {...props}>
       <style scoped key={css}>
         {/* THE KEY ATTRIBUTE HAS TO BE DYNAMIC AND UNIQUE IN THIS CASE TO MAKE THE SCOPE ATTRIBUTE TO WORK PROPERLY */}
         {css}
@@ -41,7 +40,6 @@ export default function FullEditor({
             if (getJsCode) getJsCode(value)
           }}
           onKeyDown={handleJsKeyDown}
-          className={textAreaClassName}
         />
       </div>
       <div data-id='css-container'>
@@ -54,7 +52,6 @@ export default function FullEditor({
             handleCssChange(value)
             if (getCssCode) getCssCode(value)
           }}
-          className={textAreaClassName}
         />
       </div>
       {error && <ErrorLogger error={error} />}

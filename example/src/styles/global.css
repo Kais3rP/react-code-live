@@ -67,22 +67,22 @@ img {
 /* SCROLLBAR */
 
 * {
-  scrollbar-color: var(--bg-dark);
+  scrollbar-color: var(--color-dark);
   scrollbar-width: thin;
 }
 
 *::-webkit-scrollbar-track
 {
-background-color: var(--bg-dark);
+background-color: var(--color-dark);
 }
 
 *::-webkit-scrollbar
 {
 width: 10px;
-background-color: var(--bg-dark);
+background-color: var(--color-dark);
 }
 
 *::-webkit-scrollbar-thumb
 {
-background-color:  var(--color-dark);
+background-color:  rgb(150,150,150)
 }

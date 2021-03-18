@@ -48,6 +48,7 @@ const styles = {
     whiteSpace: 'pre-wrap',
     wordBreak: 'keep-all',
     overflowWrap: 'break-word',
+    userSelect: 'none',
   },
 }
 
