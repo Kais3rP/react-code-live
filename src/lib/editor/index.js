@@ -138,14 +138,12 @@ export default class Editor extends React.Component {
 
   _updateInput = (record) => {
     const input = this._input
-console.log("RECORD", record)
     if (!input) return
 
     // Update values and selection state
     input.value = record.value
     input.selectionStart = record.selectionStart
     input.selectionEnd = record.selectionEnd
-    console.log('RECORD:', record, record.event)
     this.props.onChange(record.event)
   }
 
@@ -193,7 +191,7 @@ console.log("RECORD", record)
     }
   }
 
-  _handleKeyDown = (e: *) => {
+  _handleKeyDown = (e) => {
     const { tabSize, insertSpaces, ignoreTabKey, onKeyDown } = this.props
 
     if (onKeyDown) {
