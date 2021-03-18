@@ -4,8 +4,6 @@ import ErrorLogger from '../error-logger/ErrorLogger'
 import useManageJs from '../../shared/hooks/useManageJs'
 import useManageCss from '../../shared/hooks/useManageCss'
 import 'style-scoped'
-/* import styledJsx from "styled-jsx" */
-import { exampleJs, exampleCss } from '../../data/exampleCode'
 
 export default function FullEditor({
   initialJs,
@@ -30,14 +28,14 @@ export default function FullEditor({
         {/* THE KEY ATTRIBUTE HAS TO BE DYNAMIC AND UNIQUE IN THIS CASE TO MAKE THE SCOPE ATTRIBUTE TO WORK PROPERLY */}
         {css}
       </style>
-      <div data-id='preview-container' onError={(e)=>console.log("CAUGHT ERROR WITH EVENT LISTENER",e.toString())}>{Preview && <Preview />}</div>
+      <div data-id='preview-container'>{Preview && <Preview />}</div>
       <div data-id='js-container'>
         <Editor
           language='js'
           code={code}
           placeholder='WRITE REACT CODE HERE'
           onChange={(e) => {
-            const value = e.target.value
+            const { value } = e.target
             handleJsChange(e)
             if (getJsCode) getJsCode(value)
           }}
@@ -51,7 +49,7 @@ export default function FullEditor({
           code={css}
           placeholder='WRITE CSS CODE HERE'
           onChange={(e) => {
-            const value = e.target.value
+            const { value } = e.target.value
             handleCssChange(value)
             if (getCssCode) getCssCode(value)
           }}

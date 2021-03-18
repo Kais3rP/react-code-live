@@ -13,7 +13,7 @@ export default function ErrorLogger({ error, ...props }) {
         background: 'tomato',
         fontWeight: 'normal',
         fontFamily: 'inherit',
-        fontSize: '14px'
+        fontSize: '14px',
       }}
       {...props}
     >

@@ -1,13 +1,12 @@
 import { useState } from 'react'
-import { exampleCss } from '../../data/exampleCode'
 
 export default function useManageCss(initialCss) {
   const [css, setCss] = useState(
-    typeof initialCss === 'string' ? initialCss : exampleCss
+    typeof initialCss === 'string' ? initialCss : ``
   )
 
   return {
     css,
-    handleCssChange: (value) => setCss(value)
+    handleCssChange: (value) => setCss(value),
   }
 }

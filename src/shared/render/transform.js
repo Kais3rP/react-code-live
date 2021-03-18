@@ -7,8 +7,8 @@ const opts = {
   objectAssign: '_poly.assign',
   transforms: {
     dangerousForOf: true,
-    dangerousTaggedTemplateString: true
-  }
+    dangerousTaggedTemplateString: true,
+  },
 }
 
 export default (code) => _transform(code, opts).code

@@ -34,10 +34,10 @@ export default function useManageJs(initialJs, scope = {}) {
   // @@ - PARSER
   function parseAndRender(code) {
     try {
-    const ParsedSync = generateElement({ code, scope }, errorCallback)
-    setPreview(() => ParsedSync)
-    setError(null)
-    } catch(e){
+      const ParsedSync = generateElement({ code, scope }, errorCallback)
+      setPreview(() => ParsedSync)
+      setError(null)
+    } catch (e) {
       errorCallback(e.toString())
       setPreview(null)
     }
@@ -45,7 +45,7 @@ export default function useManageJs(initialJs, scope = {}) {
 
   // @@ - HANDLE KEY DOWN TO INTERCEPT CHARACTERS BEFORE ON CHANGE EVENT
   function handleJsKeyDown(e) {
-    const key = e.key
+    const { key } = e
     setCurrentChar(key)
   }
 
@@ -84,6 +84,6 @@ export default function useManageJs(initialJs, scope = {}) {
     handleJsChange,
     handleJsKeyDown,
     Preview,
-    error
+    error,
   }
 }

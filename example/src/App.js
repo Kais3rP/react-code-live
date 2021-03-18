@@ -3,6 +3,34 @@ import Editor from 'react-code-live';
 import styled from "styled-components";
 import styles from "./styles.module.css";
 
+const App = () => {
+
+
+function getJsCode(js){
+  console.log(js.substr(0,10))
+}
+
+function getCssCode(css){
+  console.log(css.substr(0,10))
+  }
+
+return(
+  <div>
+    { data.map( el =>  <Editor
+      key={el.id}
+      className={styles.container}
+      initialJs={el.js}
+      initialCss={el.css}
+      textAreaClassName={styles.custom}
+      getJsCode={getJsCode}
+      getCssCode={getCssCode}
+      scope={{styled: el.scope?.styled && styled }}
+    />)}
+  </div>
+)};
+
+export default App;
+
 const initialCss = `
 .__custom__live__react__ {
 width:150px;
@@ -95,33 +123,6 @@ const data = [{
 },
 {id:5} ]
 
-const App = () => {
-
-
-function getJsCode(js){
-console.log(js.substr(0,10))
-}
-
-function getCssCode(css){
-  console.log(css.substr(0,10))
-  }
-
-return(
-  <div>
-    { data.map( el =>  <Editor
-      key={el.id}
-      className={styles.container}
-      initialJs={el.js}
-      initialCss={el.css}
-      textAreaClassName={styles.custom}
-      getJsCode={getJsCode}
-      getCssCode={getCssCode}
-      scope={{styled: el.scope?.styled && styled }}
-    />)}
-  </div>
-)};
-
-export default App;
 
 //EDITOR PROPS WHEN YOU NEED TO INTERACT WITH DATA IN YOUR PARENT, IT ACCEPTS:
 // - GETTERS

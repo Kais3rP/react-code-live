@@ -423,7 +423,7 @@ export default class Editor extends React.Component {
     }
   }
 
-  _handleChange = (e: *) => {
+  _handleChange = (e) => {
     const { value, selectionStart, selectionEnd } = e.target
 
     this._recordChange(

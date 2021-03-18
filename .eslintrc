@@ -1,4 +1,4 @@
-{
+/* {
   "parser": "babel-eslint",
   "extends": [
     "standard",
@@ -32,4 +32,9 @@
     "import/export": 0,
     "endOfLine":"auto"
   }
+} */
+{
+  "extends": [
+    "wesbos"
+  ]
 }
