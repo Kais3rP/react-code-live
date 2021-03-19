@@ -36,6 +36,15 @@ div[data-id="css-container"] {
   cursor: text;
 }
 
+div[data-id="error-container"] {
+  background: tomato;
+  color: #505050;
+  width:80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 20px;
+}
+
 /* DISABLE WHITE SQUARE AROUND =, ! and < > CODE SYMBOLS */
 
 span[class*="operator"] {
@@ -49,7 +58,68 @@ textarea:focus {
 
 /* HEADER STYLES */
 
-.logo {
-
+.header_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  max-height:400px;
 }
 
+.logo {
+  position:relative;
+width:200px;
+height:200px;
+background: #262626;
+transform: perspective(1000px) rotate(-30deg) skew(25deg);
+background: url('./assets/bg_logo.jpg');
+}
+
+.left {
+  position:absolute;
+  bottom:-40px;
+  left:-20px;
+  content: 'hello';
+  width:100%;
+  height:40px;
+  background: url('./assets/bg_logo.jpg');
+  transform: rotate(0deg) skewX(-45deg);
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.right {
+  position:absolute;
+  top:60px;
+  right:80px;
+  content: 'hello';
+  width:100%;
+  height:40px;
+  background: url('./assets/bg_logo.jpg');
+  transform: rotate(90deg) skewX(45deg) translateY(40px);
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.line {
+  width:0px;
+  height:2px;
+  background: #FFF;
+}
+
+.left h5 {
+  font-size: 0.8rem;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.right h5 {
+  font-size: 0.8rem;
+  margin: 0 !important;
+  padding: 0 !important;
+}

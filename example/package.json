@@ -10,6 +10,7 @@
     "eject": "node ../node_modules/react-scripts/bin/react-scripts.js eject"
   },
   "dependencies": {
+    "gsap": "^3.6.0",
     "react": "file:../node_modules/react",
     "react-code-live": "file:..",
     "react-dom": "file:../node_modules/react-dom",
