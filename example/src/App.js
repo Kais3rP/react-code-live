@@ -4,6 +4,11 @@ import Header from './Header'
 import styled from 'styled-components'
 import styles from './styles.module.css'
 
+const icons = {
+  js: <i className={`fab fa-js-square ${styles.codeLogo}`}></i>,
+  css:  <i className={`fab fa-css3-alt ${styles.cssLogo}`}></i>
+}
+
 const App = () => {
   /*   function getJsCode(js) {
     console.log("JS LOG",js.substr(0, 10))
@@ -17,23 +22,15 @@ const App = () => {
     <div>
       <Header />
       {data.map((el) => (
-        <>
           <Editor
             key={el.id}
             className={styles.container}
             initialJs={el.js}
             initialCss={el.css}
-            textAreaClassName={styles.custom}
+            icons={icons}
+            showControls={true}
             scope={{ styled: el.scope?.styled && styled }}
-          >
-            {() => (
-              <>
-              <i className={`fab fa-js-square ${styles.codeLogo}`}></i>
-                <i className={`fab fa-css3-alt ${styles.cssLogo}`}></i>
-              </>
-            )}
-          </Editor>
-        </>
+          />
       ))}
     </div>
   )

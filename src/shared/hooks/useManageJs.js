@@ -4,7 +4,7 @@ import { calcNewCode } from '../utils'
 import { exampleJs } from '../../data/exampleCode'
 
 export default function useManageJs(initialJs, scope = {}) {
-  const [code, setCode] = useState(
+  const [js, setJs] = useState(
     initialJs && typeof initialJs === 'string' ? initialJs : ``
   )
   const [Preview, setPreview] = useState(null)
@@ -18,9 +18,9 @@ export default function useManageJs(initialJs, scope = {}) {
   const debounceTimeoutRef = useRef(null)
   const textRef = useRef()
 
-  // @@ EFFECT : PARSE CODE ONLY WHEN THE USER STOPS TYPING
+  // @@ EFFECT : PARSE js ONLY WHEN THE USER STOPS TYPING
   useEffect(() => {
-    if (!isTyping && code) parseAndRender(code)
+    if (!isTyping && js) parseAndRender(js)
   }, [isTyping])
 
   // @@ EFFECT : PLACE THE CURSOR IN THE MIDDLE OF THE BRACKETS
@@ -32,9 +32,9 @@ export default function useManageJs(initialJs, scope = {}) {
     setError(e.toString())
   }
   // @@ - PARSER
-  function parseAndRender(code) {
+  function parseAndRender(js) {
     try {
-      const ParsedSync = generateElement({ code, scope }, errorCallback)
+      const ParsedSync = generateElement({ js, scope }, errorCallback)
       setPreview(() => ParsedSync)
       setError(null)
     } catch (e) {
@@ -60,27 +60,28 @@ export default function useManageJs(initialJs, scope = {}) {
     debounceTimeoutRef.current = setTimeout(() => {
       setIsTyping(false)
     }, 1000)
-    setCode(_code)
+    setJs(_code)
     // HANDLE REPETITION OF BRACKETS
     const idx = e.target.selectionStart
     setCursorIdx(idx)
     switch (currentChar) {
       case '{':
-        setCode(calcNewCode(_code, '}', idx))
+        setJs(calcNewCode(_code, '}', idx))
         break
       case '(':
-        setCode(calcNewCode(_code, ')', idx))
+        setJs(calcNewCode(_code, ')', idx))
         break
       case '[':
-        setCode(calcNewCode(_code, ']', idx))
+        setJs(calcNewCode(_code, ']', idx))
         break
       default:
-        setCode(_code)
+        setJs(_code)
     }
   }
 
   return {
-    code,
+    js,
+    setJs,
     handleJsChange,
     handleJsKeyDown,
     Preview,

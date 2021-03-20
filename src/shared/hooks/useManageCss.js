@@ -7,6 +7,7 @@ export default function useManageCss(initialCss) {
 
   return {
     css,
-    handleCssChange: (value) => setCss(value),
+    setCss,
+    handleCssChange: (e) => setCss(e.target.value),
   }
 }

@@ -57,19 +57,31 @@ div[data-id='error-container'] {
   padding: 20px;
 }
 
+div[data-id='controls-container'] {
+  position: absolute;
+  top:10px;
+  left:10px;
+  z-index:10;
+}
+
+div[data-id='controls-container'] > button {
+  margin:2px;
+  cursor: pointer;
+}
+
 .codeLogo {
   position: absolute;
-  left:5%;
-  bottom:20.5rem;
+  right:20px;
+  top:15px;
   font-size:3rem;
   color: rgb(247, 247, 0);
-  z-index: 2;
+  z-index: 999;
 }
 
 .cssLogo {
   position: absolute;
-  right:5%;
-  bottom:20.5rem;
+  right:20px;
+  top:15px;
   font-size:3rem;
   color: rgb(106, 83, 255);
   z-index: 2;
@@ -90,10 +102,22 @@ textarea:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100vh;
 }
 
+.header_container > h1 {
+  margin:50px;
+  font-size:3rem;
+}
+
+.header_container > h3 {
+  margin-top:150px;
+  font-size:1.3rem;
+}
+
 .logo {
+  color: var(--bg-light);
   position: relative;
   width: 200px;
   height: 200px;

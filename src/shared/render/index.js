@@ -12,8 +12,11 @@ import {
   getClassAndConst,
 } from '../utils'
 
-export const generateElement = ({ code = '', scope = {} }, errorCallback) => {
-  const transformed = formatAndTranspile(code)
+export const generateElement = (
+  { js = '', scope = {} },
+  errorCallback
+) => {
+  const transformed = formatAndTranspile(js)
   const evaluated = evaluate(transformed, scope)
   return withErrorBoundary(evaluated, errorCallback)
 }

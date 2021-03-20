@@ -260,7 +260,6 @@ export default class Editor extends React.Component {
 
     if (onKeyDown) {
       onKeyDown(e)
-
       if (e.defaultPrevented) {
         return
       }
@@ -603,7 +602,7 @@ Editor.propTypes = {
   value: PropTypes.string,
   style: PropTypes.object,
   padding: PropTypes.number,
-  highlight: PropTypes.string,
+  highlight: PropTypes.func,
   textareaId: PropTypes.string,
   textareaClassName: PropTypes.string,
   autoFocus: PropTypes.bool,

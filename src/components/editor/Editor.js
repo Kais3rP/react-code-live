@@ -14,6 +14,7 @@ export default function _Editor({ code, language, ...props }) {
   } else if (language === 'css') {
     lang = languages.css
   } else lang = language.js
+ 
   return (
     <Editor
       value={code}

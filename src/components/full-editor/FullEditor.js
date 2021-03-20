@@ -4,6 +4,7 @@ import Editor from '../editor/Editor'
 import ErrorLogger from '../error-logger/ErrorLogger'
 import useManageJs from '../../shared/hooks/useManageJs'
 import useManageCss from '../../shared/hooks/useManageCss'
+import Controls from '../controls/Controls'
 import 'style-scoped'
 
 export default function FullEditor({
@@ -12,15 +13,21 @@ export default function FullEditor({
   scope,
   getJsCode,
   getCssCode,
+  icons,
+  showControls,
   render,
   children,
   ...props
 }) {
-  const { code, Preview, handleJsChange, handleJsKeyDown, error } = useManageJs(
-    initialJs,
-    scope
-  )
-  const { css, handleCssChange } = useManageCss(initialCss)
+  const {
+    js,
+    setJs,
+    Preview,
+    handleJsChange,
+    handleJsKeyDown,
+    error,
+  } = useManageJs(initialJs, scope)
+  const { css, setCss, handleCssChange } = useManageCss(initialCss)
 
   return (
     <div {...props}>
@@ -30,9 +37,12 @@ export default function FullEditor({
       </style>
       <div data-id='preview-container'>{Preview && <Preview />}</div>
       <div data-id='js-container'>
+        {showControls && <Controls code={js} setCode={setJs} />}
+        {icons?.js && icons.js}
         <Editor
           language='js'
-          code={code}
+          code={js}
+          setCode={setJs}
           placeholder='WRITE REACT CODE HERE'
           onChange={(e) => {
             const { value } = e.target
@@ -43,20 +53,22 @@ export default function FullEditor({
         />
       </div>
       <div data-id='css-container'>
+        {showControls && <Controls code={css} setCode={setCss}/>}
+        {icons?.css && icons.css}
         <Editor
           language='css'
           code={css}
           placeholder='WRITE CSS CODE HERE'
           onChange={(e) => {
             const { value } = e.target
-            handleCssChange(value)
+            handleCssChange(e)
             if (getCssCode) getCssCode(value)
           }}
         />
       </div>
       {error && <ErrorLogger error={error} />}
-      {typeof children === 'function' && children(code, css)}
-      {render && render(code, css)}
+      {typeof children === 'function' && children(js, css)}
+      {render && render(js, css)}
     </div>
   )
 }
@@ -73,6 +85,7 @@ FullEditor.propTypes = {
   textAreaClassName: PropTypes.string,
   getJsCode: PropTypes.func,
   getCssCode: PropTypes.func,
+  icons: PropTypes.object,
   render: PropTypes.func,
   children: PropTypes.node,
 }

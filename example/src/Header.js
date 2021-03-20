@@ -43,7 +43,7 @@ const Header = () => {
     })
 
     textAnim.to([reactRef.current, codeRef.current, liveRef.current], {
-      duration: 0.3,
+      duration: 1,
       color: '#CCC',
       ease: 'Power3.out',
       stagger: 0.1,
@@ -68,6 +68,7 @@ const Header = () => {
 
   return (
     <div ref={containerRef} className={styles.header_container}>
+    <h1>React Code Live</h1>
       <div ref={logoRef} className={styles.logo}>
         <div className={styles.title}>
           <h4 ref={reactRef}>
@@ -89,6 +90,7 @@ const Header = () => {
           <span ref={cssRef} className={styles.line}></span>
         </div>
       </div>
+      <h3>Write React code, style it and immediately see the result!</h3>
     </div>
   )
 }
