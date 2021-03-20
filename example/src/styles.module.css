@@ -1,13 +1,24 @@
 .container {
+  position:relative;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
+  font-size:0.9rem;
 }
 
-div[data-id="js-container"] {
-  background: rgb(30, 20, 30);
+div[data-id='preview-container'] {
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:50px;
+}
+
+div[data-id='js-container'] {
+  width: 45%;
+  background: #011b40;
   height: 21.875rem;
   max-height: 21.875rem;
   overflow: auto;
@@ -15,14 +26,15 @@ div[data-id="js-container"] {
   overflow: auto;
   margin: 10px;
   border-radius: 5px;
-  box-shadow: inset 2px 2px 2px #e6ad95, inset -2px -2px 2px #ffc3a7;
+  box-shadow: inset 2px 2px 2px #eaff01, inset -2px -2px 2px #fdf905;
   position: relative;
-  font-family: "Fira code", "Fira Mono", monospace;
+  font-family: 'Fira code', 'Fira Mono', monospace;
   cursor: text;
 }
 
-div[data-id="css-container"] {
-  background: rgb(30, 20, 30);
+div[data-id='css-container'] {
+  width: 45%;
+  background: #011b40;
   height: 21.875rem;
   max-height: 21.875rem;
   overflow: auto;
@@ -30,31 +42,47 @@ div[data-id="css-container"] {
   overflow: auto;
   margin: 10px;
   border-radius: 5px;
-  box-shadow: inset 2px 2px 2px #e6ad95, inset -2px -2px 2px #ffc3a7;
+  box-shadow: inset 2px 2px 2px #0271f8, inset -2px -2px 2px #0271f8;
   position: relative;
-  font-family: "Fira code", "Fira Mono", monospace;
+  font-family: 'Fira code', 'Fira Mono', monospace;
   cursor: text;
 }
 
-div[data-id="error-container"] {
+div[data-id='error-container'] {
   background: tomato;
   color: #505050;
-  width:80%;
+  width: 95%;
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 20px;
 }
 
+.codeLogo {
+  position: absolute;
+  left:5%;
+  bottom:20.5rem;
+  font-size:3rem;
+  color: rgb(247, 247, 0);
+  z-index: 2;
+}
+
+.cssLogo {
+  position: absolute;
+  right:5%;
+  bottom:20.5rem;
+  font-size:3rem;
+  color: rgb(106, 83, 255);
+  z-index: 2;
+}
 /* DISABLE WHITE SQUARE AROUND =, ! and < > CODE SYMBOLS */
 
-span[class*="operator"] {
+span[class*='operator'] {
   background: none !important;
 }
 
 textarea:focus {
   outline: none;
 }
-
 
 /* HEADER STYLES */
 
@@ -63,53 +91,56 @@ textarea:focus {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  max-height:400px;
 }
 
 .logo {
-  position:relative;
-width:200px;
-height:200px;
-background: #262626;
-transform: perspective(1000px) rotate(-30deg) skew(25deg);
-background: url('./assets/bg_logo.jpg');
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background: #262626;
+  transform: perspective(1000px) rotate(-30deg) skew(25deg);
+  background: url('./assets/bg_logo2.jpeg');
+  background-size: cover;
+  box-shadow: 0 0 0 0 #070129;
 }
 
 .left {
-  position:absolute;
-  bottom:-40px;
-  left:-20px;
+  position: absolute;
+  bottom: -40px;
+  left: -20px;
   content: 'hello';
-  width:100%;
-  height:40px;
-  background: url('./assets/bg_logo.jpg');
+  width: 100%;
+  height: 40px;
+  background: url('./assets/bg_logo2.jpeg');
+  background-size: cover;
   transform: rotate(0deg) skewX(-45deg);
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-
 .right {
-  position:absolute;
-  top:60px;
-  right:80px;
+  position: absolute;
+  top: 60px;
+  right: 80px;
   content: 'hello';
-  width:100%;
-  height:40px;
-  background: url('./assets/bg_logo.jpg');
+  width: 100%;
+  height: 40px;
+  background: url('./assets/bg_logo2.jpeg');
+  background-size: cover;
   transform: rotate(90deg) skewX(45deg) translateY(40px);
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
 .line {
-  width:0px;
-  height:2px;
-  background: #FFF;
+  width: 0px;
+  height: 2px;
+  background: #fff;
+  align-self:flex-start;
 }
 
 .left h5 {
@@ -122,4 +153,18 @@ background: url('./assets/bg_logo.jpg');
   font-size: 0.8rem;
   margin: 0 !important;
   padding: 0 !important;
+}
+
+.title {
+font-size: 2.5rem;
+}
+
+.title h4 {
+  margin: 0;
+  padding: 0;
+  margin-left: 10px;
+}
+
+.sideTitles {
+
 }

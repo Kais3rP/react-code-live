@@ -16,9 +16,7 @@ const withErrorBoundary = (MyComponent, errorCallback) =>
     render() {
       return this.check && typeof MyComponent === 'function' ? (
         <MyComponent />
-      ) : (
-        <ErrorLogger error='Not a valid React Component.' />
-      )
+      ) : null
     }
   }
 

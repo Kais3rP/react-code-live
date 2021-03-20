@@ -14,7 +14,8 @@ import {
 
 export const generateElement = ({ code = '', scope = {} }, errorCallback) => {
   const transformed = formatAndTranspile(code)
-  return withErrorBoundary(evaluate(transformed, scope), errorCallback)
+  const evaluated = evaluate(transformed, scope)
+  return withErrorBoundary(evaluated, errorCallback)
 }
 
 function formatAndTranspile(code) {
@@ -28,6 +29,7 @@ function formatAndTranspile(code) {
     getArrowFunction(_code) ||
     getArrowFunctionAndConst(_code)
   const variables = _code.replace(reactFunction, '')
+  // BUILDING THE FINAL FUNCTION BEFORE BUBLE TRANSPILING
   _code = `const {useState, useEffect, useRef, useMemo, useCallback, Component } = React;
   ${variables}
   return (${reactFunction})`
