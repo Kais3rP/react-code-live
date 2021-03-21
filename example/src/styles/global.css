@@ -5,8 +5,8 @@
 :root {
   --bg-light: #def1ff;
   --color-light: #002d50;
-  --color-alert: #e83e8c;
-  --color-alert-hover: #d62d7c;
+  --color-alert: #090043;
+  --color-alert-hover: #271867;
 }
 
 html,
@@ -19,9 +19,9 @@ body {
   color: var(--color-light) !important;
   font-family: 'Archivo', "Quicksand", sans-serif;
   font-style: normal;
-   scroll-behavior: smooth; 
-  /* overflow-x: hidden;
-  overflow-y: auto; */
+  scroll-behavior: smooth; 
+  overflow-x: hidden;
+  /* overflow-y: auto; */
 }
 
 pre, textarea {

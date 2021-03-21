@@ -12,7 +12,7 @@ const Header = () => {
   const liveRef = useRef(null)
   const logoRef = useRef(null)
   const mouseRef = useRef(null)
-  
+
   useEffect(() => {
     const animation = new TimelineMax({ repeat: 0 })
 
@@ -66,36 +66,57 @@ const Header = () => {
     /* const shaking = new TimelineMax({repeat: -1, yoyo: true, delay: 3})
     .to(logoRef.current, { duration:0.1, delay:2.5, rotation:"+=5" })
     .to(logoRef.current, { duration:0.1, rotation:"-=5" }) */
-  const mouseAnim = new TimelineMax({repeat: -1, yoyo: true})
-      mouseAnim.to(mouseRef.current, { duration: 0.5, opacity: 0.2, y: "-=5px" })
+    const mouseAnim = new TimelineMax({ repeat: -1, yoyo: true })
+    mouseAnim.to(mouseRef.current, { duration: 0.5, opacity: 0.2, y: '-=5px' })
   }, [])
-  
+
   return (
     <div ref={containerRef} className={styles.header_container}>
       <h1>React Code Live</h1>
-      <div ref={logoRef} className={styles.logo}>
-        <div className={styles.title}>
-          <h4 ref={reactRef}>
-            <u>React</u>
-          </h4>
-          <h4 ref={codeRef}>
-            <u>Code</u>
-          </h4>
-          <h4 ref={liveRef}>
-            <u>Live</u>
-          </h4>
+      <a
+        href='https://github.com/Kais3rP/react-code-live'
+        target={'_blank'}
+        rel='noopener noreferrer'
+      >
+        <div ref={logoRef} className={styles.logo}>
+          <div className={styles.title}>
+            <h4 ref={reactRef}>
+              <u>React</u>
+            </h4>
+            <h4 ref={codeRef}>
+              <u>Code</u>
+            </h4>
+            <h4 ref={liveRef}>
+              <u>Live</u>
+            </h4>
+          </div>
+          <div className={styles.left}>
+            <h5 className={styles.sideTitles}>JS AND JSX SUPPORT!</h5>
+            <span ref={jsRef} className={styles.line}></span>
+          </div>
+          <div className={styles.right}>
+            <h5 className={styles.sideTitles}>SCOPED CSS!</h5>
+            <span ref={cssRef} className={styles.line}></span>
+          </div>
         </div>
-        <div className={styles.left}>
-          <h5 className={styles.sideTitles}>JS AND JSX SUPPORT!</h5>
-          <span ref={jsRef} className={styles.line}></span>
+      </a>
+      <a
+        href='https://github.com/Kais3rP/react-code-live'
+        target={'_blank'}
+        rel='noopener noreferrer'
+      >
+        <div className={styles.github}>
+          <i class='fab fa-github-square'></i>
+          <h4>GitHub Repo</h4>
         </div>
-        <div className={styles.right}>
-          <h5 className={styles.sideTitles}>SCOPED CSS!</h5>
-          <span ref={cssRef} className={styles.line}></span>
-        </div>
-      </div>
+      </a>
       <div className={styles.scroll}>
-        <img ref={mouseRef} className={styles.mouse} src={mouse} alt='Scroll Icon' />
+        <img
+          ref={mouseRef}
+          className={styles.mouse}
+          src={mouse}
+          alt='Scroll Icon'
+        />
       </div>
     </div>
   )

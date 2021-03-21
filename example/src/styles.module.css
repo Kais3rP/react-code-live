@@ -146,12 +146,6 @@ textarea:focus {
   outline: none;
 }
 
-.scroll {
-  width: 3rem;
-  position: absolute;
-  bottom: 20px;
-}
-
 /* 
 @ HEADER STYLE
 */
@@ -161,12 +155,22 @@ textarea:focus {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
+}
+
+@media screen and (max-height: 800px){
+  .header_container {
+    transform: scale(0.8);
+  }
+  .scroll {
+    display : none;
+  }
 }
 
 .header_container > h1 {
   margin: 50px;
   font-size: 3rem;
+  border-bottom: 2px solid rgb(13, 0, 45);
 }
 
 .header_container > h3 {
@@ -184,7 +188,7 @@ textarea:focus {
   background: url('./assets/bg_logo2.jpeg');
   background-size: cover;
   box-shadow: 0 0 0 0 #070129;
-  margin-bottom: 20vh;
+  margin-bottom: max(20vh,200px);
 }
 
 .left {
@@ -249,6 +253,30 @@ textarea:focus {
 }
 
 .sideTitles {
+}
+
+.github {
+  display: flex;
+  padding-bottom:5px;
+  border-bottom: 2px solid rgb(13, 0, 45);
+}
+
+.github i {
+  font-size: 5rem;
+}
+
+.github h4 {
+  padding: 0;
+  margin: 0;
+  margin-left: 5px;
+  display: flex;
+  align-items:flex-end;
+}
+
+.scroll {
+  width: 3rem;
+  position: absolute;
+  bottom: 20px;
 }
 
 .features {

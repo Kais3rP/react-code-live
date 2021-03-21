@@ -5,6 +5,7 @@ import {
   waitForElementToBeRemoved,
   screen,
 } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
 import Editor from './FullEditor'
 
 // Mock errors
@@ -15,27 +16,27 @@ describe('Testing the main render of the three containers: JS CODE, CSS CODE and
   it('should render JS wrapper correctly', () => {
     render(<Editor />)
     const jsWrapper = screen.getByTestId('js-wrapper')
-    expect(jsWrapper.toBeInTheDocument)
+    expect(jsWrapper).toBeInTheDocument()
   })
   it('should render JS container correctly', () => {
     render(<Editor />)
     const jsContainer = screen.getByTestId('js-container')
-    expect(jsContainer.toBeInTheDocument)
+    expect(jsContainer).toBeInTheDocument()
   })
   it('should render CSS wrapper correctly', () => {
     render(<Editor />)
     const cssWrapper = screen.getByTestId('css-wrapper')
-    expect(cssWrapper.toBeInTheDocument)
+    expect(cssWrapper).toBeInTheDocument()
   })
   it('should render CSS container correctly', () => {
     render(<Editor />)
     const cssContainer = screen.getByTestId('css-container')
-    expect(cssContainer.toBeInTheDocument)
+    expect(cssContainer).toBeInTheDocument()
   })
   it('should render PREVIEW container correctly', () => {
     render(<Editor />)
     const previewContainer = screen.getByTestId('preview-container')
-    expect(previewContainer.toBeInTheDocument)
+    expect(previewContainer).toBeInTheDocument()
   })
   it('should render PREVIEW code when receiving valid JS code', () => {
     const jsCode = `
@@ -44,7 +45,7 @@ describe('Testing the main render of the three containers: JS CODE, CSS CODE and
     }
     `
     render(<Editor initialJs={jsCode} />)
-    expect(screen.getByText('test function component').toBeInTheDocument)
+    expect(screen.getByText('test function component')).toBeInTheDocument()
   })
 })
 
@@ -55,7 +56,7 @@ describe('Testing that the library throws Errors for all the invalid JS and JSX 
   
       `
     render(<Editor initialJs={jsCode} />)
-    expect(screen.getByTestId('error-container').toBeInTheDocument)
+    expect(screen.getByTestId('error-container')).toBeInTheDocument()
   })
   it("should throw an Error if the function passed has no return statemnt or it doesn't return anything", () => {
     const jsCode = `
@@ -75,7 +76,7 @@ describe('Testing that the library throws Errors for all the invalid JS and JSX 
     const codes = [jsCode, jsCode2, jsCode3, jsCode4]
     for (const code of codes) {
       const { unmount } = render(<Editor initialJs={code} />)
-      expect(screen.getByTestId('error-container').toBeInTheDocument)
+      expect(screen.getByTestId('error-container')).toBeInTheDocument()
       unmount()
     }
   })
@@ -95,7 +96,7 @@ describe('Testing that the library throws Errors for all the invalid JS and JSX 
     const codes = [jsCode, jsCode2]
     for (const code of codes) {
       const { unmount } = render(<Editor initialJs={code} />)
-      expect(screen.getByTestId('error-container').toBeInTheDocument)
+      expect(screen.getByTestId('error-container')).toBeInTheDocument()
       unmount()
     }
   })
@@ -111,7 +112,18 @@ describe('Testing that not supported syntax will not render neither the Preview 
     }
     `
     render(<Editor initialJs={jsCode} />)
-    expect(screen.getByTestId('preview-container').toBeEmptyDOMElement)
-    expect(screen.getByTestId('error-container').toBeEmptyDOMElement)
+    expect(screen.getByTestId('preview-container')).toBeEmptyDOMElement()
+  })
+  it('should not render the Error if you write some variables before the function', () => {
+    const jsCode = `
+    const wrong = "test"
+
+    function Test(){
+      return wrong
+    }
+
+    `
+    render(<Editor initialJs={jsCode} />)
+    expect(screen.queryByTestId('error-container')).not.toBeInTheDocument()
   })
 })
