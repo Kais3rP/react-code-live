@@ -74,13 +74,14 @@ div[data-id='error-container'] * {
 }
 
 div[data-id='controls-container'] {
+  width:85%;
   position: absolute;
   top: 10px;
   left: 10px;
   z-index: 10;
 }
 
-div[data-id='controls-container'] > button {
+div[data-id='controls-container'] button {
   margin: 2px;
   cursor: pointer;
   padding: 5px;
@@ -89,17 +90,34 @@ div[data-id='controls-container'] > button {
   color: #fff;
 }
 
-div[data-id='controls-container'] > button:hover {
+div[data-id='controls-container'] button:hover {
   transform: scale(1.08);
 }
 
-div[data-id='controls-container'] > button:active {
+div[data-id='controls-container'] button:active {
   transform: scale(0.95);
 }
 
-div[data-id='controls-container'] > button:focus {
+div[data-id='controls-container'] button:focus {
   outline: none;
 }
+
+div[data-id='controls-container'] {
+  display: flex;
+  justify-content: space-between;
+}
+
+div[data-id='storage-container'] {
+  /* margin-left:50%; */
+}
+
+/* button[data-id='save-button'] {
+  margin-left: 50% !important;
+}
+
+button[data-id='load-button'] {
+  margin-left: 5px !important;
+} */
 
 .codeLogo {
   position: absolute;
@@ -129,12 +147,10 @@ textarea:focus {
 }
 
 .scroll {
-  width:3rem;
+  width: 3rem;
   position: absolute;
   bottom: 20px;
 }
-
-
 
 /* 
 @ HEADER STYLE
@@ -168,7 +184,7 @@ textarea:focus {
   background: url('./assets/bg_logo2.jpeg');
   background-size: cover;
   box-shadow: 0 0 0 0 #070129;
-  margin-bottom:20vh;
+  margin-bottom: 20vh;
 }
 
 .left {
@@ -237,7 +253,7 @@ textarea:focus {
 
 .features {
   min-height: 100vh;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -248,4 +264,3 @@ textarea:focus {
   padding: 5px;
   text-align: center;
 }
-

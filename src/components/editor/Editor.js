@@ -7,20 +7,30 @@ import 'prismjs/components/prism-javascript'
 import 'prismjs/components/prism-css'
 import 'prismjs/themes/prism-funky.css'
 
-export default function _Editor({ code, language, ...props }) {
+export default function _Editor({
+  code,
+  language,
+  placeholder,
+  onChange,
+  onKeyDown,
+  className,
+}) {
   let lang
   if (language === 'js') {
     lang = languages.js
   } else if (language === 'css') {
     lang = languages.css
   } else lang = language.js
- 
+
   return (
     <Editor
       value={code}
       highlight={(_code) => highlight(_code, lang)}
       padding={30}
-      {...props}
+      placeholder={placeholder}
+      onChange={onChange}
+      onKeyDown={onKeyDown}
+      className={className}
     />
   )
 }

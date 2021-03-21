@@ -1,8 +1,8 @@
 /* eslint-disable react/button-has-type */
 import React from 'react'
-import propTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
-const Controls = ({ code, setCode }) => {
+const Controls = ({ storageIdentifier, code, setCode }) => {
   function handleCopy(e) {
     navigator.clipboard.writeText(code)
   }
@@ -15,18 +15,39 @@ const Controls = ({ code, setCode }) => {
   function handleCut() {
     setCode('')
   }
+
+  function handleSave() {
+    localStorage.setItem(storageIdentifier, code)
+  }
+
+  function handleLoad() {
+    const content = localStorage.getItem(storageIdentifier)
+    setCode(content || '')
+  }
+
   return (
     <div data-id='controls-container'>
-      <button onClick={handleCopy}>Copy</button>
-      <button onClick={handlePaste}>Paste</button>
-      <button onClick={handleCut}>Clear</button>
+      <div data-id='edit-container'>
+        <button onClick={handleCopy}>Copy</button>
+        <button onClick={handlePaste}>Paste</button>
+        <button onClick={handleCut}>Clear</button>
+      </div>
+      <div data-id='storage-container'>
+        <button data-id='save-button' onClick={handleSave}>
+          Save
+        </button>
+        <button data-id='load-button' onClick={handleLoad}>
+          Load
+        </button>
+      </div>
     </div>
   )
 }
 
 Controls.propTypes = {
-  code: propTypes.string.isRequired,
-  setCode: propTypes.func.isRequired,
+  code: PropTypes.string.isRequired,
+  setCode: PropTypes.func.isRequired,
+  storageIdentifier: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 export default Controls

@@ -13,9 +13,12 @@ export default function FullEditor({
   scope,
   getJsCode,
   getCssCode,
+  jsPlaceholder,
+  cssPlaceholder,
   icons,
   showControls,
   isErrorOutside,
+  storageIdentifier,
   render,
   children,
   ...props
@@ -36,15 +39,23 @@ export default function FullEditor({
         {/* THE KEY ATTRIBUTE HAS TO BE DYNAMIC AND UNIQUE IN THIS CASE TO MAKE THE SCOPE ATTRIBUTE TO WORK PROPERLY */}
         {css}
       </style>
-      <div data-id='preview-container'>{Preview && <Preview />}</div>
-      <div data-id='js-wrapper'>
-        {showControls && <Controls code={js} setCode={setJs} />}
+      <div data-id='preview-container' data-testid='preview-container'>
+        {Preview && <Preview />}
+      </div>
+      <div data-id='js-wrapper' data-testid='js-wrapper'>
+        {showControls && (
+          <Controls
+            storageIdentifier={storageIdentifier}
+            code={js}
+            setCode={setJs}
+          />
+        )}
         {icons?.js && icons.js}
-        <div data-id='js-container'>
+        <div data-id='js-container' data-testid='js-container'>
           <Editor
             language='js'
             code={js}
-            placeholder='WRITE REACT CODE HERE'
+            placeholder={jsPlaceholder}
             onChange={(e) => {
               const { value } = e.target
               handleJsChange(e)
@@ -55,14 +66,20 @@ export default function FullEditor({
           {error && !isErrorOutside && <ErrorLogger error={error} />}
         </div>
       </div>
-      <div data-id='css-wrapper'>
-        {showControls && <Controls code={css} setCode={setCss} />}
+      <div data-id='css-wrapper' data-testid='css-wrapper'>
+        {showControls && (
+          <Controls
+            storageIdentifier={storageIdentifier}
+            code={css}
+            setCode={setCss}
+          />
+        )}
         {icons?.css && icons.css}
-        <div data-id='css-container'>
+        <div data-id='css-container' data-testid='css-container'>
           <Editor
             language='css'
             code={css}
-            placeholder='WRITE CSS CODE HERE'
+            placeholder={cssPlaceholder}
             onChange={(e) => {
               const { value } = e.target
               handleCssChange(e)
@@ -90,7 +107,12 @@ FullEditor.propTypes = {
   textAreaClassName: PropTypes.string,
   getJsCode: PropTypes.func,
   getCssCode: PropTypes.func,
+  jsPlaceholder: PropTypes.string,
+  cssPlaceholder: PropTypes.string,
   icons: PropTypes.object,
+  showControls: PropTypes.bool,
+  storageIdentifier: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  isErrorOutside: PropTypes.bool,
   render: PropTypes.func,
   children: PropTypes.node,
 }

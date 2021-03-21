@@ -6,32 +6,33 @@ import styles from './styles.module.css'
 
 const icons = {
   js: <i className={`fab fa-js-square ${styles.codeLogo}`}></i>,
-  css:  <i className={`fab fa-css3-alt ${styles.cssLogo}`}></i>
+  css: <i className={`fab fa-css3-alt ${styles.cssLogo}`}></i>,
 }
-
+for (let i = 2; i < 10; i++) {
+  console.log(i)
+}
 const App = () => {
-  /*   function getJsCode(js) {
-    console.log("JS LOG",js.substr(0, 10))
+  for (let i = 2; i < 10; i++) {
+    console.log(i)
   }
-
-  function getCssCode(css) {
-    console.log("CSS LOG",css.substr(0, 10))
-  } */
-
+  console.log('TEST VSC EMBED DEBUGGER')
   return (
     <div>
       <Header />
       <Features />
       {data.map((el) => (
-          <Editor
-            key={el.id}
-            className={styles.container}
-            initialJs={el.js}
-            initialCss={el.css}
-            icons={icons}
-            showControls={true}
-            scope={{ styled: el.scope?.styled && styled }}
-          />
+        <Editor
+          key={el.id}
+          className={styles.container}
+          initialJs={el.js}
+          initialCss={el.css}
+          jsPlaceholder='WRITE JS CODE HERE'
+          cssPlaceholder='WRITE CSS CODE HERE'
+          icons={icons}
+          showControls={true}
+          storageIdentifier={el.id}
+          scope={{ styled: el.scope?.styled && styled }}
+        />
       ))}
     </div>
   )
@@ -39,23 +40,23 @@ const App = () => {
 
 export default App
 
-function Features(){
-  return(
+function Features() {
+  return (
     <ul className={styles.features}>
-    <li>Write React code, style it, enjoy the result!</li>
-    <li>Supports standard CSS3 code!</li>
-    <li>
-      The CSS is scoped to the previewed component and won't affect other
-      code!
-    </li>
-    <li>Supports potentially any library that you pass into the scope!</li>
-    <li>Supports any kind of function declaration!</li>
-    <li>Supports class declaration!</li>
-  </ul>
+      <li>Write React code, style it, enjoy the result</li>
+      <li>Write CSS the good old way</li>
+      <li>
+        CSS code is scoped to the previewed component and won't affect other
+        code
+      </li>
+      <li>Support for potentially any library that you pass into the scope</li>
+      <li>Support for both function and class declaration</li>
+      <li>
+        Easy APIs expose the code, so you can use it around your application
+      </li>
+    </ul>
   )
 }
-
-
 
 const initialCss = `.__custom__live__react__ {
 width:150px;
