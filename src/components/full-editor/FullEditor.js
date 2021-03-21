@@ -44,7 +44,6 @@ export default function FullEditor({
           <Editor
             language='js'
             code={js}
-            setCode={setJs}
             placeholder='WRITE REACT CODE HERE'
             onChange={(e) => {
               const { value } = e.target

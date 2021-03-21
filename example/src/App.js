@@ -21,6 +21,7 @@ const App = () => {
   return (
     <div>
       <Header />
+      <Features />
       {data.map((el) => (
           <Editor
             key={el.id}
@@ -37,6 +38,24 @@ const App = () => {
 }
 
 export default App
+
+function Features(){
+  return(
+    <ul className={styles.features}>
+    <li>Write React code, style it, enjoy the result!</li>
+    <li>Supports standard CSS3 code!</li>
+    <li>
+      The CSS is scoped to the previewed component and won't affect other
+      code!
+    </li>
+    <li>Supports potentially any library that you pass into the scope!</li>
+    <li>Supports any kind of function declaration!</li>
+    <li>Supports class declaration!</li>
+  </ul>
+  )
+}
+
+
 
 const initialCss = `.__custom__live__react__ {
 width:150px;

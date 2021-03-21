@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import mouse from './assets/mouse.svg'
 import { TimelineMax } from 'gsap'
 import styles from './styles.module.css'
 
@@ -10,7 +11,8 @@ const Header = () => {
   const codeRef = useRef(null)
   const liveRef = useRef(null)
   const logoRef = useRef(null)
-
+  const mouseRef = useRef(null)
+  
   useEffect(() => {
     const animation = new TimelineMax({ repeat: 0 })
 
@@ -23,7 +25,7 @@ const Header = () => {
       .to(logoRef.current, {
         duration: 0.7,
         rotationX: 0,
-        boxShadow:'-100px 100px 10px 10px #070129',
+        boxShadow: '-100px 100px 10px 10px #070129',
         ease: 'bounce',
         delay: 1,
       })
@@ -64,11 +66,13 @@ const Header = () => {
     /* const shaking = new TimelineMax({repeat: -1, yoyo: true, delay: 3})
     .to(logoRef.current, { duration:0.1, delay:2.5, rotation:"+=5" })
     .to(logoRef.current, { duration:0.1, rotation:"-=5" }) */
+  const mouseAnim = new TimelineMax({repeat: -1, yoyo: true})
+      mouseAnim.to(mouseRef.current, { duration: 0.5, opacity: 0.2, y: "-=5px" })
   }, [])
-
+  
   return (
     <div ref={containerRef} className={styles.header_container}>
-    <h1>React Code Live</h1>
+      <h1>React Code Live</h1>
       <div ref={logoRef} className={styles.logo}>
         <div className={styles.title}>
           <h4 ref={reactRef}>
@@ -90,7 +94,9 @@ const Header = () => {
           <span ref={cssRef} className={styles.line}></span>
         </div>
       </div>
-      <h3>Write React code, style it and immediately see the result!</h3>
+      <div className={styles.scroll}>
+        <img ref={mouseRef} className={styles.mouse} src={mouse} alt='Scroll Icon' />
+      </div>
     </div>
   )
 }

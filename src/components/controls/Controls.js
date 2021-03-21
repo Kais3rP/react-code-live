@@ -26,7 +26,7 @@ const Controls = ({ code, setCode }) => {
 
 Controls.propTypes = {
   code: propTypes.string.isRequired,
-  setCode: propTypes.string.isRequired,
+  setCode: propTypes.func.isRequired,
 }
 
 export default Controls

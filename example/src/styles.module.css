@@ -1,3 +1,6 @@
+/* 
+@ EDITOR STYLE
+*/
 .container {
   position: relative;
   width: 100%;
@@ -125,7 +128,17 @@ textarea:focus {
   outline: none;
 }
 
-/* HEADER STYLES */
+.scroll {
+  width:3rem;
+  position: absolute;
+  bottom: 20px;
+}
+
+
+
+/* 
+@ HEADER STYLE
+*/
 
 .header_container {
   display: flex;
@@ -155,6 +168,7 @@ textarea:focus {
   background: url('./assets/bg_logo2.jpeg');
   background-size: cover;
   box-shadow: 0 0 0 0 #070129;
+  margin-bottom:20vh;
 }
 
 .left {
@@ -220,3 +234,18 @@ textarea:focus {
 
 .sideTitles {
 }
+
+.features {
+  min-height: 100vh;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.features li {
+  font-size: 1.3rem;
+  padding: 5px;
+  text-align: center;
+}
+
