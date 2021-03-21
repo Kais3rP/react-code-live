@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react'
+/* eslint-disable react/button-has-type */
+import React from 'react'
+import propTypes from 'prop-types'
 
 const Controls = ({ code, setCode }) => {
   function handleCopy(e) {
@@ -10,13 +12,21 @@ const Controls = ({ code, setCode }) => {
     setCode(text)
   }
 
+  function handleCut() {
+    setCode('')
+  }
   return (
     <div data-id='controls-container'>
       <button onClick={handleCopy}>Copy</button>
-      <button>Cut</button>
       <button onClick={handlePaste}>Paste</button>
+      <button onClick={handleCut}>Clear</button>
     </div>
   )
+}
+
+Controls.propTypes = {
+  code: propTypes.string.isRequired,
+  setCode: propTypes.string.isRequired,
 }
 
 export default Controls

@@ -24,8 +24,8 @@ body {
   overflow-y: auto; */
 }
 
-pre {
-  color: var(--bg-light);
+pre, textarea {
+  color: var(--bg-light) !important;
 }
 
 @media Screen and (max-width: 768px){

@@ -38,8 +38,7 @@ const App = () => {
 
 export default App
 
-const initialCss = `
-.__custom__live__react__ {
+const initialCss = `.__custom__live__react__ {
 width:150px;
 height:150px;
 background:tomato;
@@ -56,8 +55,7 @@ text-align: center;
 }
 `
 
-const initialCss2 = `
-.__custom__live__react__ {
+const initialCss2 = `.__custom__live__react__ {
 width:150px;
 height:150px;
 background:lightgreen;
@@ -73,8 +71,7 @@ padding:5px;
 text-align: center;
 }
 `
-const initialCss3 = `
-.__custom__live__react__ {
+const initialCss3 = `.__custom__live__react__ {
 width:150px;
 height:150px;
 background:lightseagreen;
@@ -302,7 +299,7 @@ input[type="text"] {
   width:100%;
 }
 
-button {
+.wrapper button {
   height: 2rem;
   background-color: lightblue;
   color: black;
@@ -311,11 +308,11 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.wrapper button:hover {
   transform: scale(1.1);
 }
 
-button.active {
+.wrapper button.active {
   transform: scale(0.9);
 }
 

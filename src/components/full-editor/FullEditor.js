@@ -15,6 +15,7 @@ export default function FullEditor({
   getCssCode,
   icons,
   showControls,
+  isErrorOutside,
   render,
   children,
   ...props
@@ -36,37 +37,42 @@ export default function FullEditor({
         {css}
       </style>
       <div data-id='preview-container'>{Preview && <Preview />}</div>
-      <div data-id='js-container'>
+      <div data-id='js-wrapper'>
         {showControls && <Controls code={js} setCode={setJs} />}
         {icons?.js && icons.js}
-        <Editor
-          language='js'
-          code={js}
-          setCode={setJs}
-          placeholder='WRITE REACT CODE HERE'
-          onChange={(e) => {
-            const { value } = e.target
-            handleJsChange(e)
-            if (getJsCode) getJsCode(value)
-          }}
-          onKeyDown={handleJsKeyDown}
-        />
+        <div data-id='js-container'>
+          <Editor
+            language='js'
+            code={js}
+            setCode={setJs}
+            placeholder='WRITE REACT CODE HERE'
+            onChange={(e) => {
+              const { value } = e.target
+              handleJsChange(e)
+              if (getJsCode) getJsCode(value)
+            }}
+            onKeyDown={handleJsKeyDown}
+          />
+          {error && !isErrorOutside && <ErrorLogger error={error} />}
+        </div>
       </div>
-      <div data-id='css-container'>
-        {showControls && <Controls code={css} setCode={setCss}/>}
+      <div data-id='css-wrapper'>
+        {showControls && <Controls code={css} setCode={setCss} />}
         {icons?.css && icons.css}
-        <Editor
-          language='css'
-          code={css}
-          placeholder='WRITE CSS CODE HERE'
-          onChange={(e) => {
-            const { value } = e.target
-            handleCssChange(e)
-            if (getCssCode) getCssCode(value)
-          }}
-        />
+        <div data-id='css-container'>
+          <Editor
+            language='css'
+            code={css}
+            placeholder='WRITE CSS CODE HERE'
+            onChange={(e) => {
+              const { value } = e.target
+              handleCssChange(e)
+              if (getCssCode) getCssCode(value)
+            }}
+          />
+        </div>
       </div>
-      {error && <ErrorLogger error={error} />}
+      {error && isErrorOutside && <ErrorLogger error={error} />}
       {typeof children === 'function' && children(js, css)}
       {render && render(js, css)}
     </div>
