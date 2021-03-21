@@ -8,14 +8,7 @@ const icons = {
   js: <i className={`fab fa-js-square ${styles.codeLogo}`}></i>,
   css: <i className={`fab fa-css3-alt ${styles.cssLogo}`}></i>,
 }
-for (let i = 2; i < 10; i++) {
-  console.log(i)
-}
 const App = () => {
-  for (let i = 2; i < 10; i++) {
-    console.log(i)
-  }
-  console.log('TEST VSC EMBED DEBUGGER')
   return (
     <div>
       <Header />
