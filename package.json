@@ -1,6 +1,6 @@
 {
   "name": "react-code-live",
-  "version": "2.3.0",
+  "version": "2.4.1",
   "description": "Live coding Component for React code!",
   "author": "Cesare Polonara",
   "license": "MIT",
@@ -16,15 +16,14 @@
     "lint-fix": "eslint . --fix",
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
-    "prepare": "run-s build",
+    "prepare": "run-s test",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
     "test:lint": "eslint .",
     "test:unit": "cross-env CI=1 react-scripts test --verbose --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
-    "predeploy": "cd example && npm run build",
-    "deploy": "npm run test && gh-pages -d example/build",
-    "publish": "npm run test && npm publish"
+    "predeploy": "npm run test && cd example && npm run build",
+    "deploy": "gh-pages -d example/build"
   },
   "dependencies": {
     "buble": "^0.20.0",

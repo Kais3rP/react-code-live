@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { getByPlaceholderText, render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import Editor from './FullEditor'
 
@@ -119,5 +119,39 @@ describe('Testing that not supported syntax will not render neither the Preview 
     `
     render(<Editor initialJs={jsCode} />)
     expect(screen.queryByTestId('error-container')).not.toBeInTheDocument()
+  })
+})
+
+describe('Testing props', () => {
+  it('should proxy standard prop attributes like className to the first div element ', () => {
+    const { container } = render(<Editor className='test-class' />)
+    expect(container.firstChild.className).toEqual('test-class')
+  })
+  it("should render the prop 'initialJs' inside the textarea", () => {
+    render(<Editor initialJs='Test JS code' jsPlaceholder='js-placeholder' />)
+    const textarea = screen.getByPlaceholderText('js-placeholder')
+    expect(textarea.value).toEqual('Test JS code')
+  })
+  it("should render the prop 'initialCss' inside the textarea", () => {
+    render(
+      <Editor initialCss='Test CSS code' cssPlaceholder='css-placeholder' />
+    )
+    const textarea = screen.getByPlaceholderText('css-placeholder')
+    expect(textarea.value).toEqual('Test CSS code')
+  })
+  it("should render the 'jsPlaceholder' prop as the placeholder of the JS textarea", () => {
+    render(<Editor jsPlaceholder='js-placeholder' />)
+    const textarea = screen.getByPlaceholderText('js-placeholder')
+    expect(textarea).toBeTruthy()
+  })
+  it("should render the 'cssPlaceholder' prop as the placeholder of the CSS textarea", () => {
+    render(<Editor cssPlaceholder='css-placeholder' />)
+    const textarea = screen.getByPlaceholderText('css-placeholder')
+    expect(textarea).toBeTruthy()
+  })
+  it("should show the Controls component when receiving 'showControls' prop with the value of 'true'", () => {
+    render(<Editor showControls />)
+    const controls = screen.getAllByTestId('controls-container')
+    expect(controls.length).not.toBe(0)
   })
 })

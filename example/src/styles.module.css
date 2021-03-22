@@ -177,7 +177,7 @@ textarea:focus {
 .header_container > h1 {
   margin: 50px;
   font-size: 3rem;
-  border-bottom: 2px solid rgb(13, 0, 45);
+  border-bottom: 4px solid rgb(13, 0, 45);
 }
 
 .header_container > h3 {
@@ -265,7 +265,7 @@ textarea:focus {
 .github {
   display: flex;
   padding-bottom:5px;
-  border-bottom: 2px solid rgb(13, 0, 45);
+  border-bottom: 3px solid rgb(13, 0, 45);
 }
 
 .github i {

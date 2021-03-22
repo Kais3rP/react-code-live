@@ -26,7 +26,7 @@ const Controls = ({ storageIdentifier, code, setCode }) => {
   }
 
   return (
-    <div data-id='controls-container'>
+    <div data-id='controls-container' data-testid='controls-container'>
       <div data-id='edit-container'>
         <button onClick={handleCopy}>Copy</button>
         <button onClick={handlePaste}>Paste</button>
