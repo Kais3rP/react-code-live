@@ -25,7 +25,7 @@ import Editor from 'react-code-live'
 const App = () => <Editor/>
 }
 ```
-## CUSTOM STYLE
+## Styling
 
 To style the components, you can use the **className** prop, that will style the main container, while to
 access the containers of the 4 components (JS Textarea, CSS Textarea, Preview and Error), you can use the dataset attributes of **data-id** to select the containers:
@@ -53,8 +53,12 @@ to style elements inside the container ( Controls && Error ) as absolute positio
 |**initialJs**    |**String**|The JS code that you want to display as default content of the Textarea    |initialJs={\`<br>function Test ( ){<br> return "hello"<br>}`}     |
 |**initialCSS**  |**String**|The CSS code that you want to display as default content of the Textarea  |initialCss={\`div {<br> color: red;<br> }`}  |
 |**icons** |**Object** |You need to pass an object with a js and a css property and a JSX value, that JSX is intended to render some sort of indicator to distinguish the Textarea of JS from that of CSS|icons={{<br> js: <>JS</>,<br> css:<>CSS</><br>}} |
+|**showControls** |**Boolean** |Shows the control buttons "Copy, Paste, CLear, Save, Load" |showControls={true} |
+|**storageIdentifier** |**String** |This id is used to identify the textarea to match the saved and loaded content on localStorage |storageIdentifier="js#first" |
+|**scope** |**Object** |In this object you can pass any JS variable that you want to be in scoped with the code that will be written in the JS Textarea, you can pass any library or object, and it will be referenced inside |scope={{<br>color: "magenta"<br>}} |
 
-##### There is no testing environment setup yet, so if you wish to contribute, please open an issue. Thanks.
+
+##### The testing environment is still under development, so if you wish to contribute, please open an issue. Thanks.
 
 ## License
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ErrorLogger from '../../components/error-logger/ErrorLogger'
 
 const withErrorBoundary = (MyComponent, errorCallback) =>
   class ErrorBoundary extends Component {

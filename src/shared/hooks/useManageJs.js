@@ -67,7 +67,7 @@ export default function useManageJs(initialJs, scope = {}) {
     debounceTimeoutRef.current = setTimeout(() => {
       setIsTyping(false)
     }, 1000)
-    //setJs(_code)
+
     // HANDLE REPETITION OF BRACKETS
     const idx = e.target.selectionStart
     setCursorIdx(idx)
@@ -85,7 +85,7 @@ export default function useManageJs(initialJs, scope = {}) {
         setJs(_code)
     }
   }
-  console.log('RERENDERING')
+
   return {
     js,
     setJs,

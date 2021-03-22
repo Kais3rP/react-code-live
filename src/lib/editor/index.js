@@ -205,10 +205,11 @@ export default class Editor extends React.Component {
     if (!input) return
 
     // Update values and selection state
+    const { onChange } = this.props
     input.value = record.value
     input.selectionStart = record.selectionStart
     input.selectionEnd = record.selectionEnd
-    this.props.onChange(record.event)
+    onChange(record.event)
   }
 
   _applyEdits = (record) => {
@@ -504,33 +505,11 @@ export default class Editor extends React.Component {
   render() {
     const {
       value,
-      style,
       padding,
       highlight,
-      textareaId,
-      textareaClassName,
-      autoFocus,
-      disabled,
-      form,
-      maxLength,
-      minLength,
-      name,
       placeholder,
-      readOnly,
-      required,
-      onClick,
-      onFocus,
-      onBlur,
-      onKeyUp,
-      onChange,
       /* eslint-disable no-unused-vars */
-      onKeyDown,
-      tabSize,
-      insertSpaces,
-      ignoreTabKey,
-      /* eslint-enable no-unused-vars */
-      preClassName,
-      ...rest
+      textareaAttributes,
     } = this.props
 
     const contentStyle = {
@@ -543,7 +522,7 @@ export default class Editor extends React.Component {
     const highlighted = highlight(value)
 
     return (
-      <div {...rest} style={{ ...styles.container, ...style }}>
+      <div className={className} style={{ ...styles.container }}>
         <textarea
           ref={(c) => (this._input = c)}
           style={{
@@ -551,33 +530,13 @@ export default class Editor extends React.Component {
             ...styles.textarea,
             ...contentStyle,
           }}
-          className={
-            className + (textareaClassName ? ` ${textareaClassName}` : '')
-          }
-          id={textareaId}
+          {...textareaAttributes}
           value={value}
           onChange={this._handleChange.bind(this)}
           onKeyDown={this._handleKeyDown.bind(this)}
-          onClick={onClick}
-          onKeyUp={onKeyUp}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          disabled={disabled}
-          form={form}
-          maxLength={maxLength}
-          minLength={minLength}
-          name={name}
           placeholder={placeholder}
-          readOnly={readOnly}
-          required={required}
-          autoCapitalize='off'
-          autoComplete='off'
-          autoCorrect='off'
-          spellCheck={false}
-          data-gramm={false}
         />
         <pre
-          className={preClassName}
           aria-hidden='true'
           style={{ ...styles.editor, ...styles.highlight, ...contentStyle }}
           {...(typeof highlighted === 'string'
@@ -595,35 +554,22 @@ Editor.defaultProps = {
   tabSize: 2,
   insertSpaces: true,
   ignoreTabKey: false,
-  padding: 0,
+  padding: 35,
+  textareaAttributes: {
+    'data-gramm': false,
+    spellCheck: false,
+  },
 }
 
 Editor.propTypes = {
-  value: PropTypes.string,
-  style: PropTypes.object,
+  textareaAttributes: PropTypes.object,
+  value: PropTypes.string.isRequired,
+  highlight: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onKeyDown: PropTypes.func,
   padding: PropTypes.number,
-  highlight: PropTypes.func,
-  textareaId: PropTypes.string,
-  textareaClassName: PropTypes.string,
-  autoFocus: PropTypes.bool,
-  disabled: PropTypes.bool,
-  /* form,
-  maxLength,
-  minLength,
-  name,
-  placeholder,
-  readOnly,
-  required,
-  onClick,
-  onFocus,
-  onBlur,
-  onKeyUp,
-  onChange,
-  /* eslint-disable no-unused-vars */
-  /*onKeyDown,
-  tabSize,
-  insertSpaces,
-  ignoreTabKey,
-  /* eslint-enable no-unused-vars */
-  /*preClassName, */
+  tabSize: PropTypes.number,
+  insertSpaces: PropTypes.bool,
+  ignoreTabKey: PropTypes.bool,
 }

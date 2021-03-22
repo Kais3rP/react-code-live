@@ -13,7 +13,6 @@ export default function _Editor({
   placeholder,
   onChange,
   onKeyDown,
-  className,
 }) {
   let lang
   if (language === 'js') {
@@ -26,11 +25,9 @@ export default function _Editor({
     <Editor
       value={code}
       highlight={(_code) => highlight(_code, lang)}
-      padding={30}
       placeholder={placeholder}
       onChange={onChange}
       onKeyDown={onKeyDown}
-      className={className}
     />
   )
 }
