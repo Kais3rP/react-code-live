@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Controls = ({ storageIdentifier, code, setCode }) => {
-  function handleCopy(e) {
+  function handleCopy() {
     navigator.clipboard.writeText(code)
   }
 
@@ -13,7 +13,6 @@ const Controls = ({ storageIdentifier, code, setCode }) => {
   }
 
   function handleClear() {
-    console.log("Setting code")
     setCode('')
   }
 

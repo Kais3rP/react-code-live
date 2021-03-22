@@ -34,12 +34,16 @@
   }
 } */
 {
-  "extends": [
-    "wesbos"
-  ],
+  "extends": ["wesbos"],
   "rules": {
     "no-nested-ternary": 0,
     "react/jsx-props-no-spreading": "off",
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off",
+    "react/jsx-no-bind": [
+      1,
+      {
+        "allowBind": true
+      }
+    ]
   }
 }

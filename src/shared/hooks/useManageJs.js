@@ -2,10 +2,8 @@ import { useState, useEffect, useRef } from 'react'
 import { generateElement } from '../render'
 import { calcNewCode } from '../utils'
 
-export default function useManageJs(initialJs, scope = {}) {
-  const [js, setJs] = useState(
-    initialJs && typeof initialJs === 'string' ? initialJs : ``
-  )
+export default function useManageJs(initialJs, scope) {
+  const [js, setJs] = useState(initialJs)
   const [Preview, setPreview] = useState(null)
   const [error, setError] = useState(null)
 

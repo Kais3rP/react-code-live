@@ -19,6 +19,7 @@ export default function FullEditor({
   showControls,
   isErrorOutside,
   storageIdentifier,
+  textareaAttributes,
   render,
   children,
   ...props
@@ -32,7 +33,16 @@ export default function FullEditor({
     error,
   } = useManageJs(initialJs, scope)
   const { css, setCss, handleCssChange } = useManageCss(initialCss)
-
+  function onJSChange(e) {
+    const { value } = e.target
+    handleJsChange(e)
+    if (getJsCode) getJsCode(value)
+  }
+  function onCSSChange(e) {
+    const { value } = e.target
+    handleCssChange(e)
+    if (getCssCode) getCssCode(value)
+  }
   return (
     <div {...props}>
       <style scoped key={css}>
@@ -56,12 +66,9 @@ export default function FullEditor({
             language='js'
             code={js}
             placeholder={jsPlaceholder}
-            onChange={(e) => {
-              const { value } = e.target
-              handleJsChange(e)
-              if (getJsCode) getJsCode(value)
-            }}
+            onChange={onJSChange}
             onKeyDown={handleJsKeyDown}
+            textareaAttributes={textareaAttributes?.js}
           />
           {error && !isErrorOutside && <ErrorLogger error={error} />}
         </div>
@@ -80,31 +87,37 @@ export default function FullEditor({
             language='css'
             code={css}
             placeholder={cssPlaceholder}
-            onChange={(e) => {
-              const { value } = e.target
-              handleCssChange(e)
-              if (getCssCode) getCssCode(value)
-            }}
+            onChange={onCSSChange}
+            textareaAttributes={textareaAttributes?.css}
           />
         </div>
       </div>
       {error && isErrorOutside && <ErrorLogger error={error} />}
-      {typeof children === 'function' && children(js, css)}
-      {render && render(js, css)}
+      {typeof children === 'function' ? children(js, css) : children}
+      {render && typeof render === 'function' && render(js, css)}
     </div>
   )
 }
 
-/* FullEditor.defaultProps = {
-  initialJs: exampleJs,
-  initialCss: exampleCss
-} */
+FullEditor.defaultProps = {
+  initialJs: '',
+  initialCss: '',
+  scope: {},
+  getJsCode: null,
+  getCssCode: null,
+  jsPlaceholder: '',
+  cssPlaceholder: '',
+  icons: null,
+  showControls: false,
+  isErrorOutside: false,
+  storageIdentifier: null,
+  textareaAttributes: {},
+}
 
 FullEditor.propTypes = {
   initialJs: PropTypes.string,
   initialCss: PropTypes.string,
   scope: PropTypes.object,
-  textAreaClassName: PropTypes.string,
   getJsCode: PropTypes.func,
   getCssCode: PropTypes.func,
   jsPlaceholder: PropTypes.string,
@@ -113,6 +126,7 @@ FullEditor.propTypes = {
   showControls: PropTypes.bool,
   storageIdentifier: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   isErrorOutside: PropTypes.bool,
+  textareaAttributes: PropTypes.object,
   render: PropTypes.func,
   children: PropTypes.node,
 }

@@ -10,6 +10,8 @@ const styles = {
     boxSizing: 'border-box',
     padding: 0,
     overflow: 'hidden',
+    height: '100%',
+    width: '100%',
   },
   textarea: {
     position: 'absolute',
@@ -22,7 +24,8 @@ const styles = {
     overflow: 'hidden',
     MozOsxFontSmoothing: 'grayscale',
     WebkitFontSmoothing: 'antialiased',
-    WebkitTextFillColor: 'transparent',
+    /* THIS PROP HIDES THE PLACEHOLDER */
+    /* WebkitTextFillColor: 'transparent', */
   },
   highlight: {
     position: 'relative',
@@ -502,6 +505,10 @@ export default class Editor extends React.Component {
     onChange(e)
   }
 
+  saveTextareaRef = (c) => {
+    this._input = c
+  }
+
   render() {
     const {
       value,
@@ -520,11 +527,10 @@ export default class Editor extends React.Component {
     }
 
     const highlighted = highlight(value)
-
     return (
       <div className={className} style={{ ...styles.container }}>
         <textarea
-          ref={(c) => (this._input = c)}
+          ref={this.saveTextareaRef}
           style={{
             ...styles.editor,
             ...styles.textarea,
@@ -558,6 +564,9 @@ Editor.defaultProps = {
   textareaAttributes: {
     'data-gramm': false,
     spellCheck: false,
+    autoCapitalize: 'off',
+    autoComplete: 'off',
+    autoCorrect: 'off',
   },
 }
 

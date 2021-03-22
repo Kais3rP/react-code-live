@@ -13,6 +13,7 @@ export default function _Editor({
   placeholder,
   onChange,
   onKeyDown,
+  textareaAttributes,
 }) {
   let lang
   if (language === 'js') {
@@ -21,22 +22,27 @@ export default function _Editor({
     lang = languages.css
   } else lang = language.js
 
+  function highlightCode(_code) {
+    return highlight(_code, lang)
+  }
+
   return (
     <Editor
       value={code}
-      highlight={(_code) => highlight(_code, lang)}
+      highlight={highlightCode}
       placeholder={placeholder}
       onChange={onChange}
       onKeyDown={onKeyDown}
+      textareaAttributes={textareaAttributes}
     />
   )
 }
 
 _Editor.propTypes = {
-  code: PropTypes.string,
-  language: PropTypes.string,
-  placeholder: PropTypes.string,
-  onChange: PropTypes.func,
+  code: PropTypes.string.isRequired,
+  language: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   onKeyDown: PropTypes.func,
-  className: PropTypes.string,
+  textareaAttributes: PropTypes.object,
 }

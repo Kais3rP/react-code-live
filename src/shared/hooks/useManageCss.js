@@ -1,9 +1,7 @@
 import { useState } from 'react'
 
 export default function useManageCss(initialCss) {
-  const [css, setCss] = useState(
-    typeof initialCss === 'string' ? initialCss : ``
-  )
+  const [css, setCss] = useState(initialCss)
 
   return {
     css,
