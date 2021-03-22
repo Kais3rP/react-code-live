@@ -23,7 +23,7 @@
     "test:unit": "cross-env CI=1 react-scripts test --verbose --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "cd example && npm run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "npm run test && gh-pages -d example/build"
   },
   "dependencies": {
     "buble": "^0.20.0",

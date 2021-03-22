@@ -12,7 +12,8 @@ const Controls = ({ storageIdentifier, code, setCode }) => {
     setCode(text)
   }
 
-  function handleCut() {
+  function handleClear() {
+    console.log("Setting code")
     setCode('')
   }
 
@@ -30,7 +31,7 @@ const Controls = ({ storageIdentifier, code, setCode }) => {
       <div data-id='edit-container'>
         <button onClick={handleCopy}>Copy</button>
         <button onClick={handlePaste}>Paste</button>
-        <button onClick={handleCut}>Clear</button>
+        <button onClick={handleClear}>Clear</button>
       </div>
       <div data-id='storage-container'>
         <button data-id='save-button' onClick={handleSave}>

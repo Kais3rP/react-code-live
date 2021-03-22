@@ -167,6 +167,13 @@ textarea:focus {
   }
 }
 
+@media screen and (max-width: 400px){
+  .header_container > h1 {
+    font-size: 2rem !important;
+  }
+}
+
+
 .header_container > h1 {
   margin: 50px;
   font-size: 3rem;

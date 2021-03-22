@@ -106,7 +106,7 @@ const Header = () => {
         rel='noopener noreferrer'
       >
         <div className={styles.github}>
-          <i class='fab fa-github-square'></i>
+          <i className='fab fa-github-square'></i>
           <h4>GitHub Repo</h4>
         </div>
       </a>

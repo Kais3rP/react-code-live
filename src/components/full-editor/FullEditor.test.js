@@ -1,14 +1,8 @@
-import {
-  render,
-  fireEvent,
-  waitFor,
-  waitForElementToBeRemoved,
-  screen,
-} from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import Editor from './FullEditor'
 
-// Mock errors
+// Mock console.error
 
 global.console.error = jest.fn()
 

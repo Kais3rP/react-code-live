@@ -1,10 +1,4 @@
-import {
-  render,
-  fireEvent,
-  waitFor,
-  waitForElementToBeRemoved,
-  screen,
-} from '@testing-library/react'
+import { render, fireEvent, waitFor, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import Controls from './Controls'
 
@@ -14,7 +8,7 @@ function Test (){
     return "edited test"
 }
 `
-const mock = jest.fn()
+const mockFunction = jest.fn()
 
 const initialState = {
   code: `
@@ -23,11 +17,9 @@ const initialState = {
   }
   `,
   setCode(code) {
-    console.group('SET CODE', code)
     this.code = code
     this.test = code
-    mock()
-    console.log(this.code, this.test)
+    mockFunction()
   },
 }
 
@@ -82,7 +74,7 @@ describe('Testing-the-correct-functioning-of-the-control-buttons', () => {
         cancelable: true,
       })
     )
-    await waitFor(() => expect(mock).toHaveBeenCalled())
+    await waitFor(() => expect(mockFunction).toHaveBeenCalled())
     expect(initialState.test).toEqual(editedCode)
   })
 })

@@ -26,7 +26,7 @@ const App = () => {
           storageIdentifier={el.id}
           scope={{ styled: el.scope?.styled && styled }}
         />
-      ))}
+      ))}     
     </div>
   )
 }

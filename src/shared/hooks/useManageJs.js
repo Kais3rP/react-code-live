@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { generateElement } from '../render'
 import { calcNewCode } from '../utils'
-import { exampleJs } from '../../data/exampleCode'
 
 export default function useManageJs(initialJs, scope = {}) {
   const [js, setJs] = useState(
@@ -18,23 +17,17 @@ export default function useManageJs(initialJs, scope = {}) {
   const debounceTimeoutRef = useRef(null)
   const textRef = useRef()
 
-  // @@ EFFECT : PARSE js ONLY WHEN THE USER STOPS TYPING
-  useEffect(() => {
-    if (!isTyping && js) parseAndRender(js)
-  }, [isTyping])
-
-  // @@ EFFECT : PLACE THE CURSOR IN THE MIDDLE OF THE BRACKETS
-  useEffect(() => {
-    if (textRef.current) textRef.current.selectionEnd = cursorIdx
-  }, [cursorIdx])
+  // @ ERROR CALLBACK
 
   function errorCallback(e) {
     setError(e.toString())
   }
-  // @@ - PARSER
-  function parseAndRender(js) {
+
+  // @ - PARSER
+
+  function parseAndRender(_js) {
     try {
-      const ParsedSync = generateElement({ js, scope }, errorCallback)
+      const ParsedSync = generateElement({ js: _js, scope }, errorCallback)
       setPreview(() => ParsedSync)
       setError(null)
     } catch (e) {
@@ -43,13 +36,27 @@ export default function useManageJs(initialJs, scope = {}) {
     }
   }
 
+  // @@ EFFECT : PARSE js ONLY WHEN THE USER STOPS TYPING
+
+  useEffect(() => {
+    if (!isTyping) parseAndRender(js)
+  }, [isTyping, js])
+
+  // @@ EFFECT : PLACE THE CURSOR IN THE MIDDLE OF THE BRACKETS
+
+  useEffect(() => {
+    if (textRef.current) textRef.current.selectionEnd = cursorIdx
+  }, [cursorIdx])
+
   // @@ - HANDLE KEY DOWN TO INTERCEPT CHARACTERS BEFORE ON CHANGE EVENT
+
   function handleJsKeyDown(e) {
     const { key } = e
     setCurrentChar(key)
   }
 
   // @@ - HANDLE CHANGE EVENT
+
   function handleJsChange(e) {
     // HANDLE TEXT WRITTEN IN THE TEXTAREA
     textRef.current = e.target
@@ -60,7 +67,7 @@ export default function useManageJs(initialJs, scope = {}) {
     debounceTimeoutRef.current = setTimeout(() => {
       setIsTyping(false)
     }, 1000)
-    setJs(_code)
+    //setJs(_code)
     // HANDLE REPETITION OF BRACKETS
     const idx = e.target.selectionStart
     setCursorIdx(idx)
@@ -78,7 +85,7 @@ export default function useManageJs(initialJs, scope = {}) {
         setJs(_code)
     }
   }
-
+  console.log('RERENDERING')
   return {
     js,
     setJs,
