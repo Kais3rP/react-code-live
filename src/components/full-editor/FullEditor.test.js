@@ -1,4 +1,4 @@
-import { getByPlaceholderText, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import Editor from './FullEditor'
 
@@ -153,5 +153,13 @@ describe('Testing props', () => {
     render(<Editor showControls />)
     const controls = screen.getAllByTestId('controls-container')
     expect(controls.length).not.toBe(0)
+  })
+  it("should render JSX passed in an object with js and css properties to the prop 'icons', inside the 'x-wrapper' div", () => {
+    const icons = {
+      js: <div>JS ICON</div>,
+      css: <div>CSS ICON</div>,
+    }
+    render(<Editor icons={icons} />)
+
   })
 })
