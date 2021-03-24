@@ -547,7 +547,6 @@ export default class Editor extends React.Component {
           placeholder={placeholder}
         />
         <pre
-          data-src={"plugins/line-numbers/prism-line-numbers.css"}
           aria-hidden='true'
           style={{ ...styles.editor, ...styles.highlight, ...contentStyle }}
           {...(typeof highlighted === 'string'

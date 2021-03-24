@@ -21,7 +21,7 @@ export default function _Editor({
   useEffect(() => {
     switch (theme) {
       case 'funky':
-        return require('prismjs/themes/prism-funky.css') 
+        return require('prismjs/themes/prism-funky.css')
       case 'coy':
         return require('prismjs/themes/prism-coy.css')
       case 'dark':
