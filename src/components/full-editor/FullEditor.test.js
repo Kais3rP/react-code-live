@@ -160,6 +160,5 @@ describe('Testing props', () => {
       css: <div>CSS ICON</div>,
     }
     render(<Editor icons={icons} />)
-
   })
 })

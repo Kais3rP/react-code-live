@@ -3,11 +3,13 @@ import Editor from 'react-code-live'
 import Header from './Header'
 import styled from 'styled-components'
 import styles from './styles.module.css'
+import Features from './Features'
 
 const icons = {
   js: <i className={`fab fa-js-square ${styles.codeLogo}`}></i>,
   css: <i className={`fab fa-css3-alt ${styles.cssLogo}`}></i>,
 }
+
 const App = () => {
   return (
     <div>
@@ -25,31 +27,17 @@ const App = () => {
           showControls={true}
           storageIdentifier={el.id}
           scope={{ styled: el.scope?.styled && styled }}
+          theme={{
+            js: 'coy',
+            css: 'dark',
+          }}
         />
       ))}
     </div>
   )
 }
-App.displayName = "App"
+App.displayName = 'App'
 export default App
-
-function Features() {
-  return (
-    <ul className={styles.features}>
-      <li>Write React code, style it, enjoy the result</li>
-      <li>Write CSS the good old way</li>
-      <li>
-        CSS code is scoped to the previewed component and won't affect other
-        code
-      </li>
-      <li>Support for potentially any library that you pass into the scope</li>
-      <li>Support for both function and class declaration</li>
-      <li>
-        Easy APIs expose the code, so you can use it around your application
-      </li>
-    </ul>
-  )
-}
 
 const initialCss = `.__custom__live__react__ {
 width:150px;

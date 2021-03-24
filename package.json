@@ -1,6 +1,6 @@
 {
   "name": "react-code-live",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "description": "Live coding Component for React code!",
   "author": "Cesare Polonara",
   "license": "MIT",
@@ -41,6 +41,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "babel-eslint": "^10.1.0",
+    "chalk": "^4.1.0",
     "cross-env": "^7.0.2",
     "eslint": "^7.11.0",
     "eslint-config-airbnb": "^18.2.0",

@@ -20,6 +20,7 @@ export default function FullEditor({
   isErrorOutside,
   storageIdentifier,
   textareaAttributes,
+  theme,
   render,
   children,
   ...props
@@ -69,6 +70,7 @@ export default function FullEditor({
             onChange={onJSChange}
             onKeyDown={handleJsKeyDown}
             textareaAttributes={textareaAttributes?.js}
+            theme={theme?.js}
           />
           {error && !isErrorOutside && <ErrorLogger error={error} />}
         </div>
@@ -89,6 +91,7 @@ export default function FullEditor({
             placeholder={cssPlaceholder}
             onChange={onCSSChange}
             textareaAttributes={textareaAttributes?.css}
+            theme={theme?.css}
           />
         </div>
       </div>
@@ -127,6 +130,7 @@ FullEditor.propTypes = {
   storageIdentifier: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   isErrorOutside: PropTypes.bool,
   textareaAttributes: PropTypes.object,
+  theme: PropTypes.object,
   render: PropTypes.func,
   children: PropTypes.node,
 }

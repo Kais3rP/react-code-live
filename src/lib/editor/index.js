@@ -515,6 +515,7 @@ export default class Editor extends React.Component {
       padding,
       highlight,
       placeholder,
+      classNamePrism,
       /* eslint-disable no-unused-vars */
       textareaAttributes,
     } = this.props
@@ -528,7 +529,10 @@ export default class Editor extends React.Component {
 
     const highlighted = highlight(value)
     return (
-      <div className={className} style={{ ...styles.container }}>
+      <div
+        className={`${className} ${classNamePrism}`}
+        style={{ ...styles.container }}
+      >
         <textarea
           ref={this.saveTextareaRef}
           style={{
@@ -543,6 +547,7 @@ export default class Editor extends React.Component {
           placeholder={placeholder}
         />
         <pre
+          data-src={"plugins/line-numbers/prism-line-numbers.css"}
           aria-hidden='true'
           style={{ ...styles.editor, ...styles.highlight, ...contentStyle }}
           {...(typeof highlighted === 'string'
@@ -571,6 +576,7 @@ Editor.defaultProps = {
 }
 
 Editor.propTypes = {
+  classNamePrism: PropTypes.string.isRequired,
   textareaAttributes: PropTypes.object,
   value: PropTypes.string.isRequired,
   highlight: PropTypes.func.isRequired,
