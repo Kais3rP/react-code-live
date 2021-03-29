@@ -16,7 +16,9 @@ npm install --save react-code-live
 ```
 
 ## Usage
+
 ### The Editor works by default even without taking extra props
+
 ```jsx
 
 import React from 'react'
@@ -25,6 +27,7 @@ import Editor from 'react-code-live'
 const App = () => <Editor/>
 }
 ```
+
 ## Styling
 
 To style the components, you can use the **className** prop, that will style the main container, while to
@@ -36,26 +39,44 @@ div[data-id="preview-container"]
 div[data-id="js-container"]
 div[data-id="css-container"]
 ```
+
 You can also use the two wrappers:
+
 ```css
 div[data-id="jss-wrapper"]
 div[data-id="css-wrapper"]
 ```
+
 to style elements inside the container ( Controls && Error ) as absolute positioned overlays over the textareas (as you can see in the Demo).
 
 # API
-  
-|Prop  |Type   |Effect   |Example   |
-|---|---|---|---|
-| **className**  |**String**   |It is applied to the main container **'div'**   | className="container"   |
-|**jsPlaceholder**   |**String**   |The place holder for the JS Textarea   |jsPlaceholder="WRITE JS CODE HERE"   |
-|**cssPlaceholder**   |**String**   |The placeholder for the CSS Textarea   |cssPlaceholder="WRITE CSS CODE HERE"   |
-|**initialJs**    |**String**|The JS code that you want to display as default content of the Textarea    |initialJs={\`<br>function Test ( ){<br> return "hello"<br>}`}     |
-|**initialCSS**  |**String**|The CSS code that you want to display as default content of the Textarea  |initialCss={\`div {<br> color: red;<br> }`}  |
-|**icons** |**Object** |You need to pass an object with a js and a css property and a JSX value, that JSX is intended to render some sort of indicator to distinguish the Textarea of JS from that of CSS|icons={{<br> js: <>JS</>,<br> css:<>CSS</><br>}} |
-|**showControls** |**Boolean** |Shows the control buttons "Copy, Paste, Clear, Save, Load" |showControls={true} |
-|**storageIdentifier** |**String** |This id is used to identify the textarea to match the saved and loaded content on localStorage |storageIdentifier="js#first" |
-|**scope** |**Object** |In this object you can pass any JS variable that you want to be in scope with the code that will be written in the JS Textarea, you can pass anything, and it will be referenced inside |scope={{<br>color: "magenta"<br>}} |
+
+| Prop                  | Type         | Effect                                                                                                                                                                                  | Example                                                       |
+| --------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| **className**         | **String**   | It is applied to the main container **'div'**                                                                                                                                           | className="container"                                         |
+| **jsPlaceholder**     | **String**   | The place holder for the JS Textarea                                                                                                                                                    | jsPlaceholder="WRITE JS CODE HERE"                            |
+| **cssPlaceholder**    | **String**   | The placeholder for the CSS Textarea                                                                                                                                                    | cssPlaceholder="WRITE CSS CODE HERE"                          |
+| **initialJs**         | **String**   | The JS code that you want to display as default content of the Textarea                                                                                                                 | initialJs={\`<br>function Test ( ){<br> return "hello"<br>}`} |
+| **initialCSS**        | **String**   | The CSS code that you want to display as default content of the Textarea                                                                                                                | initialCss={\`div {<br> color: red;<br> }`}                   |
+| **icons**             | **Object**   | You need to pass an object with a js and a css property and a JSX value, that JSX is intended to render some sort of indicator to distinguish the Textarea of JS from that of CSS       | icons={{<br> js: <>JS</>,<br> css:<>CSS</><br>}}              |
+| **showControls**      | **Boolean**  | Shows the control buttons "Copy, Paste, Clear, Save, Load"                                                                                                                              | showControls={true}                                           |
+| **storageIdentifier** | **String**   | This id is used to identify the textarea to match the saved and loaded content on localStorage                                                                                          | storageIdentifier="js#first"                                  |
+| **scope**             | **Object**   | In this object you can pass any JS variable that you want to be in scope with the code that will be written in the JS Textarea, you can pass anything, and it will be referenced inside | scope={{<br>color: "magenta"<br>}}                            |
+| **getJsCode**         | **Function** | An handlerthat receives the JS code while it's written in the textarea                                                                                                                  | getJsCode={(code) => {console.log(code)}<br>}                 |
+| **getCssCode**        | **Function** | An handler that receives the CSS code while it's written in the textarea                                                                                                                | getJsCode={(code) => {console.log(code)}<br>}                 |
+| **render**            | **Function** | A render prop that will expose js, and css code as params                                                                                                                               | render={(js,css) => <>{js}{css}</>}                           |
+| **theme**             | **Object**   | You can choose a theme style for the highligthers, according to PrismJS theme table                                                                                                     | theme={{js: "funky", css: "coy"}}                             |
+
+### Themes:
+|Name |
+|---|
+|coy|
+|funky|
+|dark|
+|okaidia|
+|tomorrow|
+|solarized|
+<br>
 
 
 ##### The testing environment is still under development, so if you wish to contribute, please open an issue. Thanks.
