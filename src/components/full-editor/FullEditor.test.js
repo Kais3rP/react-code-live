@@ -106,7 +106,7 @@ describe('Testing that not supported syntax will not render neither the Preview 
     }
     `
     render(<Editor initialJs={jsCode} />)
-    expect(screen.getByTestId('preview-container')).toBeEmptyDOMElement()
+    expect(screen.queryByText('function Test()')).not.toBeInTheDocument()
   })
   it('should not render the Error if you write some variables before the function', () => {
     const jsCode = `
