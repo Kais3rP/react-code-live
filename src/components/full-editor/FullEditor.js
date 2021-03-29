@@ -46,11 +46,11 @@ export default function FullEditor({
   }
   return (
     <div {...props}>
-      <style scoped key={css}>
-        {/* THE KEY ATTRIBUTE HAS TO BE DYNAMIC AND UNIQUE IN THIS CASE TO MAKE THE SCOPE ATTRIBUTE TO WORK PROPERLY */}
-        {css}
-      </style>
       <div data-id='preview-container' data-testid='preview-container'>
+        <style scoped key={css}>
+          {/* THE KEY ATTRIBUTE HAS TO BE DYNAMIC AND UNIQUE IN THIS CASE TO MAKE THE SCOPE ATTRIBUTE TO WORK PROPERLY */}
+          {css}
+        </style>
         {Preview && <Preview />}
       </div>
       <div data-id='js-wrapper' data-testid='js-wrapper'>
